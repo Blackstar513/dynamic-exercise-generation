@@ -1,0 +1,12 @@
+All commands should be executed from within the root project folder!
+
+1. Start the VM:
+vagrant up
+
+2. ssh into the VM
+vagrant ssh djangoServer
+
+3. destroy the vm
+vagrant destroy
+or
+vagrant destroy -f

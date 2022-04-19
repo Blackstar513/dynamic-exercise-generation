@@ -1,0 +1,7 @@
+All commands should be executed from within the root project folder!
+
+Start from scratch:
+ansible-playbook setup.yaml
+
+Apply django changes:
+ansible-playbook update_django.yaml
