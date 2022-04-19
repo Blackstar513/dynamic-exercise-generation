@@ -1,0 +1,11 @@
+---
+
+- hosts: django
+  gather_facts: yes
+  become: yes
+  tasks: 
+    - name: closing django screen session
+      shell: screen -X -S django_web quit
+      become_user: "{{ansible_user}}"
+
+...

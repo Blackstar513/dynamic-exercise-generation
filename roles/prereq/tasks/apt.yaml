@@ -1,0 +1,16 @@
+---
+
+- name: apt update
+  shell: sudo apt update -y
+  become_user: "{{ansible_user}}"
+  changed_when: true
+
+- name: apt upgrade
+  shell: sudo apt upgrade -y
+  become_user: "{{ansible_user}}"
+  changed_when: true
+
+- name: install custom ppa dependencies
+  shell: sudo apt install software-properties-common -y
+  become_user: "{{ansible_user}}"
+  changed_when: true

@@ -1,0 +1,6 @@
+---
+
+- name: install django
+  shell: python3.10 -m pip install django
+  become_user: "{{ansible_user}}"
+  changed_when: true

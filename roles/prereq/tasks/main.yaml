@@ -1,0 +1,5 @@
+---
+
+- include_tasks: apt.yaml
+- include_tasks: python.yaml
+- include_tasks: django.yaml

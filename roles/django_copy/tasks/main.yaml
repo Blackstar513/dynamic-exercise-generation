@@ -1,0 +1,13 @@
+---
+
+- name: copy django folder to remote
+  copy:
+    src: ./dynexgen
+    dest: ~{{ansible_user}}/
+    owner: "{{ansible_user}}"
+    group: "{{ansible_user}}"
+    mode: 0644
+
+- name: run django server
+  shell: cd dynexgen; screen -dmS django_web python3.10 manage.py runserver 0.0.0.0:8000
+  become_user: "{{ansible_user}}"
