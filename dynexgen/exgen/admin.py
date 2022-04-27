@@ -4,14 +4,49 @@ from .models import Exercise, Answer, Category, Course, Lecturer, ExercisePictur
 
 
 # Register your models here.
-admin.site.register(Exercise)
-admin.site.register(Answer)
-admin.site.register(Category)
-admin.site.register(Course)
+class ExerciseInline(admin.TabularInline):
+    model = ExerciseDependency
+    extra = 0
+    fk_name = 'parent'
+
+
+class AnswerInline(admin.TabularInline):
+    model = Answer
+    extra = 0
+
+
+class ExercisePictureInline(admin.TabularInline):
+    model = ExercisePicture
+    extra = 0
+
+
+class ExerciseCategoryInline(admin.TabularInline):
+    model = ExerciseCategory
+    extra = 1
+
+
+class CourseInline(admin.TabularInline):
+    model = CourseExercise
+    extra = 0
+
+
+class CourseCategoryInline(admin.TabularInline):
+    model = CourseCategory
+    extra = 1
+
+
+class ExerciseAdmin(admin.ModelAdmin):
+    fieldsets = [
+        (None,               {'fields': ['text']}),
+        ('Lecturer', {'fields': ['creator']}),
+    ]
+    inlines = [ExerciseInline, AnswerInline, ExercisePictureInline, ExerciseCategoryInline, CourseInline]
+
+
+class CourseAdmin(admin.ModelAdmin):
+    inlines = [CourseCategoryInline]
+
+
+admin.site.register(Exercise, ExerciseAdmin)
+admin.site.register(Course, CourseAdmin)
 admin.site.register(Lecturer)
-admin.site.register(ExercisePicture)
-admin.site.register(AnswerPicture)
-admin.site.register(ExerciseDependency)
-admin.site.register(CourseExercise)
-admin.site.register(CourseCategory)
-admin.site.register(ExerciseCategory)
