@@ -50,3 +50,4 @@ class CourseAdmin(admin.ModelAdmin):
 admin.site.register(Exercise, ExerciseAdmin)
 admin.site.register(Course, CourseAdmin)
 admin.site.register(Lecturer)
+admin.site.register(Category)
