@@ -31,6 +31,7 @@ ALLOWED_HOSTS = ['192.168.56.11', 'localhost']
 # Application definition
 
 INSTALLED_APPS = [
+    'exgen.apps.ExgenConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
