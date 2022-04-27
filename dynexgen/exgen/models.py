@@ -13,6 +13,7 @@ class Lecturer(models.Model):
 class Course(models.Model):
     name = models.CharField(max_length=100, verbose_name="Kursname")
     semester = models.CharField(max_length=10, verbose_name="Semester")
+    lecturer = models.ForeignKey(Lecturer, on_delete=models.CASCADE, verbose_name='Dozent')
     exercise = models.ManyToManyField('Exercise', through='CourseExercise', blank=True,
                                        verbose_name="Benutzte Aufgaben")
     category = models.ManyToManyField('Category', through='CourseCategory', verbose_name="Kategorien")
