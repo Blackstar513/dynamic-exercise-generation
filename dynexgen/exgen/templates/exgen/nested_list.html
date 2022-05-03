@@ -1,0 +1,11 @@
+{% for child in nested_list %}
+    {% if child|length %}
+        <ul>
+            {% include 'exgen/nested_list.html' with nested_list=child %}
+        </ul>
+    {% else %}
+        <li>
+            {{ child.id }}: {{ child.text }}
+        </li>
+    {% endif %}
+{% endfor %}
