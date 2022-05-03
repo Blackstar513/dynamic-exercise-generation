@@ -1,0 +1,15 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title> Exercise List</title>
+    </head>
+    <body>
+    {% if exercise_dependencies %}
+        <ul>
+            {% include 'exgen/nested_list.html' with nested_list=exercise_dependencies %}
+        </ul>
+    {% else %}
+        <p>No exercise with this id.</p>
+    {% endif %}
+    </body>
+</html>
