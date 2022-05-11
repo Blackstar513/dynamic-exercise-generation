@@ -23,3 +23,8 @@
   shell: curl -sS https://bootstrap.pypa.io/get-pip.py | python3.10
   become_user: "{{ansible_user}}"
   changed_when: true
+  
+- name: update setuptools
+  shell: python3.10 -m pip install -U setuptools
+  become_user: "{{ansible_user}}"
+  changed_when: true
