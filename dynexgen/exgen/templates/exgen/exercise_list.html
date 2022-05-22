@@ -1,9 +1,8 @@
-<html>
-    <head>
-        <meta charset="utf-8">
-        <title> Exercise List</title>
-    </head>
-    <body>
+{% extends "exgen/base.html" %}
+
+{% block title %}Exercise{% endblock %}
+
+{% block content %}
     {% if exercise_dependencies %}
         <ul>
             {% include 'exgen/nested_list.html' with nested_list=exercise_dependencies %}
@@ -11,5 +10,4 @@
     {% else %}
         <p>No exercise with this id.</p>
     {% endif %}
-    </body>
-</html>
+{% endblock %}
