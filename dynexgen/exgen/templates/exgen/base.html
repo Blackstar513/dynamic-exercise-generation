@@ -1,0 +1,49 @@
+<html>
+<head>
+	<style type="text/css">
+		.sidebar {
+			height:100%;
+			width:160px;
+			position: fixed;
+			z-index:1;
+			top:0;
+			left:0;
+			background-color:#150054;
+			overflow-x: :hidden;
+			padding-top:20px;
+		}
+
+		.sidebar a {
+			padding:6px 8px 6px 16px;
+			text-decoration: none;
+			font-size:25px;
+			color: #FBAC03;
+			display:block;
+		}
+
+		.main{
+			margin-left:160px;
+			padding: 0;
+		}
+
+		.main ul {
+			padding-left: 30px;
+		}
+
+	</style>
+	<title>{% block title %}Dynamic Exercise Generation{% endblock %}</title>
+</head>
+
+<body>
+	<div class="sidebar">
+		<a href="{% url 'exgen:index' %}">Home</a>
+		<a href="{% url 'exgen:exercise_search' %}">Search</a>
+	</div>
+
+	<div class="main">
+	{% block content %}
+	{% endblock %}
+	</div>
+
+</body>
+</html>
