@@ -15,7 +15,8 @@ class ExerciseBottomUpView(generic.ListView):
 
     def get_queryset(self):
         return {'exercise_dependencies': Exercise.objects.get(pk=self.kwargs['pk']).get_all_parent_dependencies_correctly_nested(),
-                'show_answers': False}
+                'show_answers': False,
+                'exercise_id': self.kwargs['pk']}
 
 
 class ExerciseAnswerBottomUpView(generic.ListView):
@@ -24,6 +25,7 @@ class ExerciseAnswerBottomUpView(generic.ListView):
 
     def get_queryset(self):
         return {'exercise_dependencies': Exercise.objects.get(pk=self.kwargs['pk']).get_all_parent_dependencies_correctly_nested(),
-                'show_answers': True}
+                'show_answers': True,
+                'exercise_id': self.kwargs['pk']}
             
 
