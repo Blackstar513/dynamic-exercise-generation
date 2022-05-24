@@ -11,9 +11,19 @@ def index(request):
 
 class ExerciseBottomUpView(generic.ListView):
     template_name = 'exgen/exercise_list.html'
-    context_object_name = 'exercise_dependencies'
+    context_object_name = 'context'
 
     def get_queryset(self):
-        return Exercise.objects.get(pk=self.kwargs['pk']).get_all_parent_dependencies_correctly_nested()
+        return {'exercise_dependencies': Exercise.objects.get(pk=self.kwargs['pk']).get_all_parent_dependencies_correctly_nested(),
+                'show_answers': False}
+
+
+class ExerciseAnswerBottomUpView(generic.ListView):
+    template_name = 'exgen/exercise_list.html'
+    context_object_name = 'context'
+
+    def get_queryset(self):
+        return {'exercise_dependencies': Exercise.objects.get(pk=self.kwargs['pk']).get_all_parent_dependencies_correctly_nested(),
+                'show_answers': True}
             
 
