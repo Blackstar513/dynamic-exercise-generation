@@ -4,13 +4,17 @@
 
 {% block content %}
     {% if context.exercise_dependencies %}
-        <ul>
-            {% if context.show_answers %}
-                {% include 'exgen/nested_answer_list.html' with nested_list=context.exercise_dependencies %}
-            {% else %}
+        {% if context.show_answers %}
+            <ul>
+                    {% include 'exgen/nested_answer_list.html' with nested_list=context.exercise_dependencies %}
+            </ul>
+            <a href="{% url 'exgen:bottom_up' context.exercise_id %}">hide answers</a>
+        {% else %}
+            <ul>
                 {% include 'exgen/nested_list.html' with nested_list=context.exercise_dependencies %}
-            {% endif %}
-        </ul>
+            </ul>
+            <a href="{% url 'exgen:answer_bottom_up' context.exercise_id %}">show answers</a>
+        {% endif %}
     {% else %}
         <p>No exercise with this id.</p>
     {% endif %}
