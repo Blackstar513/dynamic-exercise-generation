@@ -1,0 +1,15 @@
+{% for child in nested_list %}
+    {% if child|length %}
+        <ul>
+            {% include 'exgen/nested_list.html' with nested_list=child %}
+        </ul>
+    {% else %}
+        <li>
+            {{ child.id }}: {{ child.text }}
+            {% for answer in child.answers.all %}
+                <br>
+                Answer {{ forloop.counter }}: {{ answer.text }}
+            {% endfor %}
+        </li>
+    {% endif %}
+{% endfor %}
