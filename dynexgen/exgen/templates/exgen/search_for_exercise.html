@@ -1,0 +1,25 @@
+{% extends "exgen/base.html" %}
+
+{% block title %}Search{% endblock %}
+
+{% block content %}
+<form method="GET">
+    <table>
+        {{ form.as_table }}
+    </table>
+    <input type="submit" value="Search">
+</form>
+<br>
+{% for exercise in search_results %}
+    <details>
+        <summary><a href="{% url 'exgen:bottom_up' exercise.id %}">{{ exercise.text|truncatechars:25 }}</a></summary>
+        <p>
+            Categories:
+            {% for category in exercise.category.all %}
+                {{ category }},
+            {% endfor %}
+        </p>
+        <p>Fulltext: {{ exercise.text }}</p>
+    </details>
+{% endfor %}
+{% endblock %}

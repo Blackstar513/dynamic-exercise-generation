@@ -1,9 +1,8 @@
-<html>
-    <head>
-        <meta charset="utf-8">
-        <title> Exercise List</title>
-    </head>
-    <body>
+{% extends "exgen/base.html" %}
+
+{% block title %}Exercise List{% endblock %}
+
+{% block content %}
     {% if context.exercise_dependencies %}
         <ul>
             {% if context.show_answers %}
@@ -15,5 +14,4 @@
     {% else %}
         <p>No exercise with this id.</p>
     {% endif %}
-    </body>
-</html>
+{% endblock %}
