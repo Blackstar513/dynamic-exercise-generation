@@ -103,21 +103,21 @@ class Answer(models.Model):
 
 
 class ExercisePicture(models.Model):
-    location = models.CharField(verbose_name="Pfad", max_length=200)
+    image = models.ImageField(upload_to='exercise_images/', verbose_name="Image", max_length=200)
     text = models.TextField(verbose_name="Bildbeschreibung")
     exercise = models.ForeignKey(Exercise, related_name='pictures', on_delete=models.CASCADE, verbose_name="Aufgabe")
 
     def __str__(self):
-        return f"{self.location}"
+        return f"{self.image}"
 
 
 class AnswerPicture(models.Model):
-    location = models.CharField(verbose_name="Pfad", max_length=200)
+    image = models.ImageField(upload_to='answer_images/', verbose_name="Image", max_length=200)
     text = models.TextField(verbose_name="Bildbeschreibung")
     exercise = models.ForeignKey(Answer, related_name='pictures', on_delete=models.CASCADE, verbose_name="Lösung")
 
     def __str__(self):
-        return f"{self.location}"
+        return f"{self.image}"
 
 
 class Category(models.Model):
