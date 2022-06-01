@@ -37,8 +37,9 @@ class CourseCategoryInline(admin.TabularInline):
 
 class ExerciseAdmin(admin.ModelAdmin):
     fieldsets = [
-        (None,               {'fields': ['text']}),
+        (None,               {'fields': ['text', 'text_type']}),
         ('Lecturer', {'fields': ['creator']}),
+        ('Published?', {'fields': ['published']}),
     ]
     inlines = [ExerciseInline, AnswerInline, ExercisePictureInline, ExerciseCategoryInline, CourseInline]
 

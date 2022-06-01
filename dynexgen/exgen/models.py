@@ -23,7 +23,18 @@ class Course(models.Model):
 
 
 class Exercise(models.Model):
+    MARKDOWN = 'MARKDOWN'
+    LATEX = 'LATEX'
+    PLAIN = 'PLAIN'
+    TEXT_TYPE_CHOICES = [
+        (MARKDOWN, 'Markdown'),
+        (LATEX, 'Latex'),
+        (PLAIN, 'Plain')
+    ]
+
     text = models.TextField(verbose_name="Aufgabentext")
+    text_type = models.CharField(verbose_name="Texttype", max_length=15, choices=TEXT_TYPE_CHOICES, default=MARKDOWN)
+    published = models.BooleanField(default=False)
     creator = models.ForeignKey(Lecturer, related_name='exercises', on_delete=models.SET_NULL, blank=True, null=True,
                                 verbose_name="Ersteller")
     dependency = models.ManyToManyField('self', through='ExerciseDependency', through_fields=('child', 'parent'),
