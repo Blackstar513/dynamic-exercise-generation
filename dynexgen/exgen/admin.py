@@ -55,10 +55,14 @@ class ExerciseAdmin(admin.ModelAdmin):
 
     fieldsets = [
         (None,               {'fields': ['text', 'text_type']}),
-        ('Lecturer', {'fields': ['creator']}),
         ('Published?', {'fields': ['published']}),
     ]
     inlines = [ExerciseInline, AnswerInline, ExercisePictureInline, ExerciseCategoryInline, CourseInline]
+
+    def save_model(self, request, obj, form, change):
+        if not obj.creator:
+            obj.creator = request.user
+        super().save_model(request, obj, form, change)
 
 
 class CourseAdmin(admin.ModelAdmin):
