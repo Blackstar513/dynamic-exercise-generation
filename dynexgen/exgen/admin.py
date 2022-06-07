@@ -21,11 +21,6 @@ class ExerciseInline(admin.TabularInline):
     fk_name = 'parent'
 
 
-class AnswerInline(admin.TabularInline):
-    model = Answer
-    extra = 0
-
-
 class ExercisePictureInline(admin.TabularInline):
     model = ExercisePicture
     extra = 0
@@ -36,9 +31,20 @@ class ExerciseCategoryInline(admin.TabularInline):
     extra = 1
 
 
+class AnswerPictureInline(admin.TabularInline):
+    model = AnswerPicture
+    extra = 0
+
+
+class AnswerInline(admin.TabularInline):
+    model = Answer
+    extra = 0
+
+
 class CourseInline(admin.TabularInline):
     model = CourseExercise
     extra = 0
+    classes = ['collapse']
 
 
 class CourseCategoryInline(admin.TabularInline):
@@ -65,11 +71,8 @@ class ExerciseAdmin(admin.ModelAdmin):
         super().save_model(request, obj, form, change)
 
 
-class CourseAdmin(admin.ModelAdmin):
-    inlines = [CourseCategoryInline]
-
-
 # Register your models here.
 admin.site.register(Exercise, ExerciseAdmin)
-admin.site.register(Course, CourseAdmin)
+admin.site.register(Course, inlines=[CourseCategoryInline])
+admin.site.register(Answer, inlines=[AnswerPictureInline])
 admin.site.register(Category)
