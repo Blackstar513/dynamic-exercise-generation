@@ -120,7 +120,7 @@ class ExercisePicture(models.Model):
 class AnswerPicture(models.Model):
     image = models.ImageField(upload_to='answer_images/', verbose_name="Image", max_length=200)
     text = models.TextField(verbose_name="Bildbeschreibung")
-    exercise = models.ForeignKey(Answer, related_name='pictures', on_delete=models.CASCADE, verbose_name="Lösung")
+    answer = models.ForeignKey(Answer, related_name='pictures', on_delete=models.CASCADE, verbose_name="Lösung")
 
     def __str__(self):
         return f"{self.image}"
