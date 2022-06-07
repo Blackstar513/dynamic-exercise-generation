@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Exercise, Answer, Category, Course, Lecturer, ExercisePicture, AnswerPicture, ExerciseDependency, \
+from .models import Exercise, Answer, Category, Course, ExercisePicture, AnswerPicture, ExerciseDependency, \
     CourseExercise, CourseCategory, ExerciseCategory
 
 
@@ -68,5 +68,4 @@ class CourseAdmin(admin.ModelAdmin):
 # Register your models here.
 admin.site.register(Exercise, ExerciseAdmin)
 admin.site.register(Course, CourseAdmin)
-admin.site.register(Lecturer)
 admin.site.register(Category)

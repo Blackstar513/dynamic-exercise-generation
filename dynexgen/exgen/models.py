@@ -1,21 +1,16 @@
 from django.db import models
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
 
 
 # Create your models here.
-class Lecturer(models.Model):
-    forename = models.CharField(max_length=50, verbose_name="Vorname")
-    surname = models.CharField(max_length=50, verbose_name="Nachname")
-
-    def __str__(self):
-        return f"{self.forename} {self.surname}"
-
-
 class Course(models.Model):
     name = models.CharField(max_length=100, verbose_name="Kursname")
     semester = models.CharField(max_length=10, verbose_name="Semester")
-    lecturer = models.ForeignKey(Lecturer, on_delete=models.CASCADE, verbose_name='Dozent')
+    lecturer = models.ForeignKey(User, on_delete=models.SET_NULL, verbose_name='Dozent', null=True)
     exercise = models.ManyToManyField('Exercise', through='CourseExercise', blank=True,
-                                       verbose_name="Benutzte Aufgaben")
+                                      verbose_name="Benutzte Aufgaben")
     category = models.ManyToManyField('Category', through='CourseCategory', verbose_name="Kategorien")
 
     def __str__(self):
@@ -35,7 +30,7 @@ class Exercise(models.Model):
     text = models.TextField(verbose_name="Aufgabentext")
     text_type = models.CharField(verbose_name="Texttype", max_length=15, choices=TEXT_TYPE_CHOICES, default=MARKDOWN)
     published = models.BooleanField(default=False)
-    creator = models.ForeignKey(Lecturer, related_name='exercises', on_delete=models.SET_NULL, blank=True, null=True,
+    creator = models.ForeignKey(User, related_name='exercises', on_delete=models.SET_NULL, blank=True, null=True,
                                 verbose_name="Ersteller")
     dependency = models.ManyToManyField('self', through='ExerciseDependency', through_fields=('child', 'parent'),
                                         symmetrical=False, blank=True, verbose_name="Abhängig von")
