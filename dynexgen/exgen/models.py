@@ -152,7 +152,7 @@ class Category(models.Model):
 
 
 class Assembly(models.Model):
-    title = models.CharField(verbose_name="Title", max_length=50, blank=True, null=False)
+    title = models.CharField(verbose_name="Title", max_length=50, blank=False)
 
     published = models.BooleanField(default=False)
     date_created = models.DateTimeField(auto_now_add=True)
