@@ -107,10 +107,9 @@ class Exercise(models.Model):
     def __str__(self):
         if self.title:
             return self.title
-        elif len(self.text) > 43:
-            return f"Text: {self.text[:41]}..."
         else:
-            return self.text
+            text = f"{self.text[:41]}..." if len(self.text) > 43 else self.text
+            return f"Text: {text}"
 
 
 class Answer(models.Model):
