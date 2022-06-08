@@ -21,6 +21,7 @@ class Course(models.Model):
     exercise = models.ManyToManyField('Exercise', through='CourseExercise', blank=True,
                                       verbose_name="Benutzte Aufgaben")
     category = models.ManyToManyField('Category', through='CourseCategory', verbose_name="Kategorien")
+    assembly = models.ManyToManyField('Assembly', through='AssemblyCourses', verbose_name="Assemblies")
 
     def __str__(self):
         return f"{self.semester}: {self.name}"
@@ -159,8 +160,6 @@ class Assembly(models.Model):
 
     creator = models.ForeignKey(User, related_name='assemblys', on_delete=models.SET_NULL, blank=True, null=True,
                                 verbose_name="Creator")
-    course = models.ForeignKey(Course, related_name='courses', on_delete=models.SET_NULL, verbose_name="Course",
-                               null=True)
     exercise = models.ManyToManyField('Exercise', through='ExerciseAssembly', verbose_name="Exercises")
     category = models.ManyToManyField('Category', through='AssemblyCategory', verbose_name="Categories")
 
@@ -206,3 +205,9 @@ class AssemblyCategory(models.Model):
     Assembly = models.ForeignKey(Assembly, related_name='category_assemblies', on_delete=models.CASCADE, verbose_name="Assembly")
     category = models.ForeignKey(Category, related_name='cassembly_categories', on_delete=models.CASCADE,
                                  verbose_name="Categorie")
+
+
+class AssemblyCourses(models.Model):
+    course = models.ForeignKey(Course, related_name='assembly_courses', on_delete=models.CASCADE, verbose_name="Course")
+    assembly = models.ForeignKey(Assembly, related_name='course_assemblies', on_delete=models.CASCADE,
+                                 verbose_name="Assembly")
