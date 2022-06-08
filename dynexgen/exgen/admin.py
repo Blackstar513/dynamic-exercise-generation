@@ -5,6 +5,13 @@ from .models import Exercise, Answer, Category, Course, ExercisePicture, AnswerP
 
 
 # Custom admin actions
+@admin.action(description='Clone selected objects')
+def make_clone(modeladmin, request, queryset):
+    for obj in queryset:
+        obj.id = None
+        obj.save()
+
+
 @admin.action(description='Mark selected exercises as published')
 def make_published(modeladmin, request, queryset):
     queryset.update(published=True)
@@ -60,13 +67,16 @@ class CourseCategoryInline(admin.TabularInline):
 
 # Custom admin forms
 class ExerciseAdmin(nested_admin.NestedModelAdmin):
-    list_display = ('text', 'creator', 'text_type', 'published')
+    list_display = ('__str__', 'creator', 'text_type', 'comment', 'date_modified', 'published')
+    #list_display_links = list_display
     list_filter = ('creator', 'published', 'text_type')
-    search_fields = ('text', 'creator__last_name__startswith', 'text_type__startswith')
-    actions = (make_published, make_unpublished)
+    search_fields = ('title', 'text', 'creator__last_name__startswith', 'text_type__startswith')
+    search_help_text = "Searches anywhere in titles and text;\nSearches if creator or texttype start with the query"
+    actions = (make_published, make_unpublished, make_clone)
+    save_as = True  # overwrites "save and add another" with "save as new" -> allows cloning of exercises
 
     fieldsets = [
-        (None,               {'fields': ['text', 'text_type']}),
+        (None,               {'fields': ['title', 'text', 'text_type']}),
         ('Published?', {'fields': ['published']}),
     ]
     inlines = [ExerciseInline, AnswerInline, ExercisePictureInline, ExerciseCategoryInline, CourseInline]
