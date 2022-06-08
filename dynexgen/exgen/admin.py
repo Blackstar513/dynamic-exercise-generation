@@ -1,3 +1,4 @@
+import nested_admin
 from django.contrib import admin
 from .models import Exercise, Answer, Category, Course, ExercisePicture, AnswerPicture, ExerciseDependency, \
     CourseExercise, CourseCategory, ExerciseCategory
@@ -19,32 +20,37 @@ class ExerciseInline(admin.TabularInline):
     model = ExerciseDependency
     extra = 0
     fk_name = 'parent'
+    sortable_options = None  # needed, because of nested_admin errors
 
 
 class ExercisePictureInline(admin.TabularInline):
     model = ExercisePicture
     extra = 0
+    sortable_options = None  # needed, because of nested_admin errors
 
 
 class ExerciseCategoryInline(admin.TabularInline):
     model = ExerciseCategory
     extra = 1
+    sortable_options = None  # needed, because of nested_admin errors
 
 
-class AnswerPictureInline(admin.TabularInline):
+class AnswerPictureInline(nested_admin.NestedTabularInline):
     model = AnswerPicture
     extra = 0
 
 
-class AnswerInline(admin.TabularInline):
+class AnswerInline(nested_admin.NestedTabularInline):
     model = Answer
     extra = 0
+    inlines = [AnswerPictureInline]
 
 
 class CourseInline(admin.TabularInline):
     model = CourseExercise
     extra = 0
     classes = ['collapse']
+    sortable_options = False  # needed, because of nested_admin errors
 
 
 class CourseCategoryInline(admin.TabularInline):
@@ -53,10 +59,10 @@ class CourseCategoryInline(admin.TabularInline):
 
 
 # Custom admin forms
-class ExerciseAdmin(admin.ModelAdmin):
+class ExerciseAdmin(nested_admin.NestedModelAdmin):
     list_display = ('text', 'creator', 'text_type', 'published')
     list_filter = ('creator', 'published', 'text_type')
-    search_fields = ('text', 'creator__surname__startswith', 'text_type__startswith')
+    search_fields = ('text', 'creator__last_name__startswith', 'text_type__startswith')
     actions = (make_published, make_unpublished)
 
     fieldsets = [
@@ -74,5 +80,5 @@ class ExerciseAdmin(admin.ModelAdmin):
 # Register your models here.
 admin.site.register(Exercise, ExerciseAdmin)
 admin.site.register(Course, inlines=[CourseCategoryInline])
-admin.site.register(Answer, inlines=[AnswerPictureInline])
+#admin.site.register(Answer, inlines=[AnswerPictureInline])
 admin.site.register(Category)
