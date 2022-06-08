@@ -3,6 +3,15 @@ from django.contrib.auth import get_user_model
 
 User = get_user_model()
 
+MARKDOWN = 'MARKDOWN'
+LATEX = 'LATEX'
+PLAIN = 'PLAIN'
+TEXT_TYPE_CHOICES = [
+    (MARKDOWN, 'Markdown'),
+    (LATEX, 'Latex'),
+    (PLAIN, 'Plain')
+]
+
 
 # Create your models here.
 class Course(models.Model):
@@ -18,18 +27,16 @@ class Course(models.Model):
 
 
 class Exercise(models.Model):
-    MARKDOWN = 'MARKDOWN'
-    LATEX = 'LATEX'
-    PLAIN = 'PLAIN'
-    TEXT_TYPE_CHOICES = [
-        (MARKDOWN, 'Markdown'),
-        (LATEX, 'Latex'),
-        (PLAIN, 'Plain')
-    ]
-
+    title = models.CharField(verbose_name="Title", max_length=50, blank=True, null=False)
     text = models.TextField(verbose_name="Aufgabentext")
     text_type = models.CharField(verbose_name="Texttype", max_length=15, choices=TEXT_TYPE_CHOICES, default=MARKDOWN)
+
+    comment = models.TextField(verbose_name="Comment", blank=True)
+
     published = models.BooleanField(default=False)
+    date_created = models.DateTimeField(auto_now_add=True)
+    date_modified = models.DateTimeField(auto_now=True)
+
     creator = models.ForeignKey(User, related_name='exercises', on_delete=models.SET_NULL, blank=True, null=True,
                                 verbose_name="Ersteller")
     dependency = models.ManyToManyField('self', through='ExerciseDependency', through_fields=('child', 'parent'),
@@ -97,11 +104,21 @@ class Exercise(models.Model):
         return reverse_nested_dependencies
 
     def __str__(self):
-        return f"{self.text[:20]}..."
+        if self.title:
+            return self.title
+        elif len(self.text) > 43:
+            return f"Text: {self.text[:41]}..."
+        else:
+            return self.text
 
 
 class Answer(models.Model):
     text = models.TextField(verbose_name="Lösungstext")
+    text_type = models.CharField(verbose_name="Texttype", max_length=15, choices=TEXT_TYPE_CHOICES, default=MARKDOWN)
+
+    date_created = models.DateTimeField(auto_now_add=True)
+    date_modified = models.DateTimeField(auto_now=True)
+
     exercise = models.ForeignKey(Exercise, related_name='answers', on_delete=models.CASCADE, verbose_name='Lösung')
 
     def __str__(self):
@@ -133,6 +150,21 @@ class Category(models.Model):
         return self.name
 
 
+class Assembly(models.Model):
+    title = models.CharField(verbose_name="Title", max_length=50, blank=True, null=False)
+
+    published = models.BooleanField(default=False)
+    date_created = models.DateTimeField(auto_now_add=True)
+    date_modified = models.DateTimeField(auto_now=True)
+
+    creator = models.ForeignKey(User, related_name='assemblys', on_delete=models.SET_NULL, blank=True, null=True,
+                                verbose_name="Creator")
+    course = models.ForeignKey(Course, related_name='courses', on_delete=models.SET_NULL, verbose_name="Course",
+                               null=True)
+    exercise = models.ManyToManyField('Exercise', through='ExerciseAssembly', verbose_name="Exercises")
+    category = models.ManyToManyField('Category', through='AssemblyCategory', verbose_name="Categories")
+
+
 class ExerciseDependency(models.Model):
     HIERARCHY_CHOICES = [
         ('even', "Gleichgestellt"),
@@ -161,3 +193,16 @@ class CourseCategory(models.Model):
     course = models.ForeignKey(Course, related_name='category_courses', on_delete=models.CASCADE, verbose_name="Kurs")
     category = models.ForeignKey(Category, related_name='course_categories', on_delete=models.CASCADE,
                                  verbose_name="Kategorie")
+
+
+class ExerciseAssembly(models.Model):
+    exercise = models.ForeignKey(Exercise, related_name='assembly_exercises', on_delete=models.CASCADE, verbose_name="Exercise")
+    assembly = models.ForeignKey(Assembly, related_name='exercise_assemblies', on_delete=models.CASCADE, verbose_name="Assembly")
+
+    rank = models.PositiveSmallIntegerField(verbose_name="Ordering number")
+
+
+class AssemblyCategory(models.Model):
+    Assembly = models.ForeignKey(Assembly, related_name='category_assemblies', on_delete=models.CASCADE, verbose_name="Assembly")
+    category = models.ForeignKey(Category, related_name='cassembly_categories', on_delete=models.CASCADE,
+                                 verbose_name="Categorie")
