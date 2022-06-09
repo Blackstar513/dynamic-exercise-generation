@@ -1,0 +1,533 @@
+[
+{
+    "model": "exgen.course",
+    "pk": 1,
+    "fields": {
+        "name": "Mahlen mit Zahlen",
+        "semester": "WiSe2022",
+        "lecturer": 1
+    }
+},
+{
+    "model": "exgen.exercise",
+    "pk": 1,
+    "fields": {
+        "title": "",
+        "text": "Dies ist eine gleichgestellte Beispielaufgabe",
+        "text_type": "MARKDOWN",
+        "comment": "",
+        "published": false,
+        "date_created": "2022-06-08T16:28:23.827Z",
+        "date_modified": "2022-06-08T16:28:23.834Z",
+        "creator": 1
+    }
+},
+{
+    "model": "exgen.exercise",
+    "pk": 2,
+    "fields": {
+        "title": "",
+        "text": "Eine Subaufgabe!",
+        "text_type": "MARKDOWN",
+        "comment": "",
+        "published": false,
+        "date_created": "2022-06-08T16:28:23.827Z",
+        "date_modified": "2022-06-08T16:28:23.834Z",
+        "creator": 1
+    }
+},
+{
+    "model": "exgen.exercise",
+    "pk": 3,
+    "fields": {
+        "title": "",
+        "text": "Das ist eine Beispielaufgabe",
+        "text_type": "MARKDOWN",
+        "comment": "",
+        "published": false,
+        "date_created": "2022-06-08T16:28:23.827Z",
+        "date_modified": "2022-06-08T16:28:23.834Z",
+        "creator": 1
+    }
+},
+{
+    "model": "exgen.exercise",
+    "pk": 4,
+    "fields": {
+        "title": "",
+        "text": "Parentaufgabe Test 2",
+        "text_type": "MARKDOWN",
+        "comment": "",
+        "published": false,
+        "date_created": "2022-06-08T16:28:23.827Z",
+        "date_modified": "2022-06-08T16:28:23.834Z",
+        "creator": 1
+    }
+},
+{
+    "model": "exgen.exercise",
+    "pk": 5,
+    "fields": {
+        "title": "",
+        "text": "Subaufgabe Test 2",
+        "text_type": "MARKDOWN",
+        "comment": "",
+        "published": false,
+        "date_created": "2022-06-08T16:28:23.827Z",
+        "date_modified": "2022-06-08T16:28:23.834Z",
+        "creator": 1
+    }
+},
+{
+    "model": "exgen.exercise",
+    "pk": 6,
+    "fields": {
+        "title": "",
+        "text": "parenttest 3",
+        "text_type": "MARKDOWN",
+        "comment": "",
+        "published": false,
+        "date_created": "2022-06-08T16:28:23.827Z",
+        "date_modified": "2022-06-08T16:28:23.834Z",
+        "creator": 1
+    }
+},
+{
+    "model": "exgen.exercise",
+    "pk": 7,
+    "fields": {
+        "title": "",
+        "text": "Subtest 3",
+        "text_type": "MARKDOWN",
+        "comment": "",
+        "published": false,
+        "date_created": "2022-06-08T16:28:23.827Z",
+        "date_modified": "2022-06-08T16:28:23.834Z",
+        "creator": 1
+    }
+},
+{
+    "model": "exgen.exercise",
+    "pk": 8,
+    "fields": {
+        "title": "",
+        "text": "sub test 4",
+        "text_type": "MARKDOWN",
+        "comment": "",
+        "published": false,
+        "date_created": "2022-06-08T16:28:23.827Z",
+        "date_modified": "2022-06-08T16:28:23.834Z",
+        "creator": 1
+    }
+},
+{
+    "model": "exgen.exercise",
+    "pk": 9,
+    "fields": {
+        "title": "",
+        "text": "parent test 4",
+        "text_type": "MARKDOWN",
+        "comment": "",
+        "published": false,
+        "date_created": "2022-06-08T16:28:23.827Z",
+        "date_modified": "2022-06-08T16:28:23.834Z",
+        "creator": 1
+    }
+},
+{
+    "model": "exgen.exercise",
+    "pk": 10,
+    "fields": {
+        "title": "",
+        "text": "gleich sub test 2",
+        "text_type": "MARKDOWN",
+        "comment": "",
+        "published": false,
+        "date_created": "2022-06-08T16:28:23.827Z",
+        "date_modified": "2022-06-08T16:28:23.834Z",
+        "creator": 1
+    }
+},
+{
+    "model": "exgen.exercise",
+    "pk": 11,
+    "fields": {
+        "title": "",
+        "text": "test",
+        "text_type": "MARKDOWN",
+        "comment": "",
+        "published": false,
+        "date_created": "2022-06-08T16:28:23.827Z",
+        "date_modified": "2022-06-08T16:28:23.834Z",
+        "creator": 1
+    }
+},
+{
+    "model": "exgen.exercise",
+    "pk": 12,
+    "fields": {
+        "title": "",
+        "text": "Text Zeile 1-n\r\nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-n\r\n  \r\nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nvv\r\n  \r\nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile",
+        "text_type": "MARKDOWN",
+        "comment": "",
+        "published": false,
+        "date_created": "2022-06-08T16:28:23.827Z",
+        "date_modified": "2022-06-08T16:28:23.834Z",
+        "creator": 1
+    }
+},
+{
+    "model": "exgen.exercise",
+    "pk": 13,
+    "fields": {
+        "title": "long test",
+        "text": "Text Zeile 1-n\r\nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-n\r\n  \r\nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nvv\r\n  \r\nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile",
+        "text_type": "MARKDOWN",
+        "comment": "",
+        "published": false,
+        "date_created": "2022-06-08T16:33:47.281Z",
+        "date_modified": "2022-06-08T16:33:47.281Z",
+        "creator": 1
+    }
+},
+{
+    "model": "exgen.exercise",
+    "pk": 14,
+    "fields": {
+        "title": "long test",
+        "text": "Text Zeile 1-n\r\nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-n\r\n  \r\nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nvv\r\n  \r\nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile 1-nText Zeile",
+        "text_type": "MARKDOWN",
+        "comment": "Das ist ein Kommentar der sehr laaaaaang ist. Das ist ein Kommentar der sehr laaaaaang ist.\r\nDas ist ein Kommentar der sehr laaaaaang ist.\r\nDas ist ein Kommentar der sehr laaaaaang ist.\r\n\r\nDas ist ein Kommentar der sehr laaaaaang ist.\r\n\r\nDas ist ein Kommentar der sehr laaaaaang ist.\r\n\r\n\r\nDas ist ein Kommentar der sehr laaaaaang ist.\r\nDas ist ein Kommentar der sehr laaaaaang ist.",
+        "published": false,
+        "date_created": "2022-06-08T16:44:20.032Z",
+        "date_modified": "2022-06-08T18:15:49.945Z",
+        "creator": 1
+    }
+},
+{
+    "model": "exgen.answer",
+    "pk": 1,
+    "fields": {
+        "text": "Ein Lösungstext",
+        "text_type": "MARKDOWN",
+        "date_created": "2022-06-08T16:28:23.788Z",
+        "date_modified": "2022-06-08T16:28:23.798Z",
+        "exercise": 1
+    }
+},
+{
+    "model": "exgen.answer",
+    "pk": 2,
+    "fields": {
+        "text": "Hallo Subaufgaben Lösungstext",
+        "text_type": "MARKDOWN",
+        "date_created": "2022-06-08T16:28:23.788Z",
+        "date_modified": "2022-06-08T16:28:23.798Z",
+        "exercise": 2
+    }
+},
+{
+    "model": "exgen.answer",
+    "pk": 3,
+    "fields": {
+        "text": "Das ist ein Lösungstext!",
+        "text_type": "MARKDOWN",
+        "date_created": "2022-06-08T16:28:23.788Z",
+        "date_modified": "2022-06-08T16:28:23.798Z",
+        "exercise": 3
+    }
+},
+{
+    "model": "exgen.answer",
+    "pk": 4,
+    "fields": {
+        "text": "NÖ!",
+        "text_type": "MARKDOWN",
+        "date_created": "2022-06-08T16:28:23.788Z",
+        "date_modified": "2022-06-08T16:28:23.798Z",
+        "exercise": 4
+    }
+},
+{
+    "model": "exgen.answer",
+    "pk": 5,
+    "fields": {
+        "text": "NÖÖ!",
+        "text_type": "MARKDOWN",
+        "date_created": "2022-06-08T16:28:23.788Z",
+        "date_modified": "2022-06-08T16:28:23.798Z",
+        "exercise": 5
+    }
+},
+{
+    "model": "exgen.answer",
+    "pk": 6,
+    "fields": {
+        "text": "ein lösungstext 1",
+        "text_type": "MARKDOWN",
+        "date_created": "2022-06-08T16:28:23.788Z",
+        "date_modified": "2022-06-08T16:28:23.798Z",
+        "exercise": 11
+    }
+},
+{
+    "model": "exgen.answer",
+    "pk": 7,
+    "fields": {
+        "text": "lösungstext 2",
+        "text_type": "MARKDOWN",
+        "date_created": "2022-06-08T16:28:23.788Z",
+        "date_modified": "2022-06-08T16:28:23.798Z",
+        "exercise": 11
+    }
+},
+{
+    "model": "exgen.answer",
+    "pk": 8,
+    "fields": {
+        "text": "Teil der aufgabenstellung A\r\n\r\nTeil der Lösung\r\nTeil der Lösung\r\n\r\nTeil der aufgabenstellung B\r\n\r\nTeil der Lösung B\r\nTeil der Lösung B",
+        "text_type": "MARKDOWN",
+        "date_created": "2022-06-08T16:28:23.788Z",
+        "date_modified": "2022-06-08T16:28:23.798Z",
+        "exercise": 12
+    }
+},
+{
+    "model": "exgen.answer",
+    "pk": 9,
+    "fields": {
+        "text": "Teil der aufgabenstellung A\r\n\r\nTeil der Lösung\r\nTeil der Lösung\r\n\r\nTeil der aufgabenstellung B\r\n\r\nTeil der Lösung B\r\nTeil der Lösung B",
+        "text_type": "MARKDOWN",
+        "date_created": "2022-06-08T16:33:47.283Z",
+        "date_modified": "2022-06-08T16:33:47.284Z",
+        "exercise": 13
+    }
+},
+{
+    "model": "exgen.exercisepicture",
+    "pk": 1,
+    "fields": {
+        "image": "abc",
+        "text": "DAS IST GAR KEIN BILD!",
+        "exercise": 3
+    }
+},
+{
+    "model": "exgen.exercisepicture",
+    "pk": 2,
+    "fields": {
+        "image": "exercise_images/fat_bird.jpeg",
+        "text": "Bird is the word",
+        "exercise": 10
+    }
+},
+{
+    "model": "exgen.exercisepicture",
+    "pk": 3,
+    "fields": {
+        "image": "exercise_images/fat_bird_DEHWqcy.jpeg",
+        "text": "Bird is the word",
+        "exercise": 6
+    }
+},
+{
+    "model": "exgen.exercisepicture",
+    "pk": 4,
+    "fields": {
+        "image": "exercise_images/fat_bird_ntnfCJm.jpeg",
+        "text": "Birdo",
+        "exercise": 7
+    }
+},
+{
+    "model": "exgen.answerpicture",
+    "pk": 1,
+    "fields": {
+        "image": "answer_images/fat_bird.jpeg",
+        "text": "bild1",
+        "answer": 6
+    }
+},
+{
+    "model": "exgen.answerpicture",
+    "pk": 2,
+    "fields": {
+        "image": "answer_images/iot2.png",
+        "text": "bild2",
+        "answer": 6
+    }
+},
+{
+    "model": "exgen.category",
+    "pk": 1,
+    "fields": {
+        "name": "Zahlenjonglieren"
+    }
+},
+{
+    "model": "exgen.category",
+    "pk": 2,
+    "fields": {
+        "name": "negieren"
+    }
+},
+{
+    "model": "exgen.category",
+    "pk": 3,
+    "fields": {
+        "name": "TestStatistik"
+    }
+},
+{
+    "model": "exgen.exercisedependency",
+    "pk": 1,
+    "fields": {
+        "parent": 3,
+        "child": 1,
+        "hierarchy": "even"
+    }
+},
+{
+    "model": "exgen.exercisedependency",
+    "pk": 2,
+    "fields": {
+        "parent": 3,
+        "child": 2,
+        "hierarchy": "higher"
+    }
+},
+{
+    "model": "exgen.exercisedependency",
+    "pk": 3,
+    "fields": {
+        "parent": 1,
+        "child": 4,
+        "hierarchy": "even"
+    }
+},
+{
+    "model": "exgen.exercisedependency",
+    "pk": 4,
+    "fields": {
+        "parent": 4,
+        "child": 5,
+        "hierarchy": "higher"
+    }
+},
+{
+    "model": "exgen.exercisedependency",
+    "pk": 5,
+    "fields": {
+        "parent": 6,
+        "child": 7,
+        "hierarchy": "higher"
+    }
+},
+{
+    "model": "exgen.exercisedependency",
+    "pk": 6,
+    "fields": {
+        "parent": 9,
+        "child": 8,
+        "hierarchy": "higher"
+    }
+},
+{
+    "model": "exgen.exercisedependency",
+    "pk": 7,
+    "fields": {
+        "parent": 4,
+        "child": 10,
+        "hierarchy": "higher"
+    }
+},
+{
+    "model": "exgen.exercisedependency",
+    "pk": 8,
+    "fields": {
+        "parent": 5,
+        "child": 10,
+        "hierarchy": "even"
+    }
+},
+{
+    "model": "exgen.exercisecategory",
+    "pk": 1,
+    "fields": {
+        "category": 1,
+        "exercise": 1
+    }
+},
+{
+    "model": "exgen.exercisecategory",
+    "pk": 2,
+    "fields": {
+        "category": 2,
+        "exercise": 2
+    }
+},
+{
+    "model": "exgen.exercisecategory",
+    "pk": 3,
+    "fields": {
+        "category": 1,
+        "exercise": 3
+    }
+},
+{
+    "model": "exgen.exercisecategory",
+    "pk": 4,
+    "fields": {
+        "category": 1,
+        "exercise": 4
+    }
+},
+{
+    "model": "exgen.exercisecategory",
+    "pk": 5,
+    "fields": {
+        "category": 2,
+        "exercise": 5
+    }
+},
+{
+    "model": "exgen.exercisecategory",
+    "pk": 6,
+    "fields": {
+        "category": 2,
+        "exercise": 3
+    }
+},
+{
+    "model": "exgen.exercisecategory",
+    "pk": 7,
+    "fields": {
+        "category": 3,
+        "exercise": 12
+    }
+},
+{
+    "model": "exgen.exercisecategory",
+    "pk": 8,
+    "fields": {
+        "category": 3,
+        "exercise": 13
+    }
+},
+{
+    "model": "exgen.courseexercise",
+    "pk": 1,
+    "fields": {
+        "course": 1,
+        "exercise": 1
+    }
+},
+{
+    "model": "exgen.coursecategory",
+    "pk": 1,
+    "fields": {
+        "course": 1,
+        "category": 1
+    }
+}
+]

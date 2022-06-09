@@ -1,0 +1,20 @@
+[
+{
+    "model": "auth.user",
+    "pk": 1,
+    "fields": {
+        "password": "pbkdf2_sha256$320000$I6rz4Pwge3kF4n8u1WVXtj$OsFVpZJFeGZoozc8DQ52nhF68B1JVKTWPT/luNpEU7c=",
+        "last_login": "2022-06-08T16:29:11.675Z",
+        "is_superuser": true,
+        "username": "admin",
+        "first_name": "",
+        "last_name": "",
+        "email": "admin@norealmail.com",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2022-04-27T12:05:58.583Z",
+        "groups": [],
+        "user_permissions": []
+    }
+}
+]
