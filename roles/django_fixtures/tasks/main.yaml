@@ -1,0 +1,10 @@
+---
+
+
+- name: apply admin fixture
+  shell: cd dynexgen; python3.10 manage.py loaddata ./fixtures/user/test_admin_fixture.json
+  become_user: "{{ansible_user}}"
+
+- name: apply dummy fixture
+  shell: cd dynexgen; python3.10 manage.py loaddata ./fixtures/exgen/dummy_fixture.json
+  become_user: "{{ansible_user}}"
