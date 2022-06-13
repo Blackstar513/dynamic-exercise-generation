@@ -44,6 +44,9 @@ class Exercise(models.Model):
                                         symmetrical=False, blank=True, verbose_name="Abhängig von")
     category = models.ManyToManyField('Category', through='ExerciseCategory', verbose_name="Kategorien")
 
+    def is_root(self):
+        return not self.children.exists()
+
     def get_all_parent_dependencies(self):
         
         # list of all even dependencies
