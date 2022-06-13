@@ -3,6 +3,7 @@ from django.utils.html import format_html
 from django.contrib import admin
 from .models import Exercise, Answer, Category, Course, ExercisePicture, AnswerPicture, ExerciseDependency, \
     CourseExercise, CourseCategory, ExerciseCategory, Assembly, ExerciseAssembly, AssemblyCategory
+from django.utils.translation import gettext_lazy as _
 
 
 # Custom admin actions
@@ -21,6 +22,28 @@ def make_published(modeladmin, request, queryset):
 @admin.action(description='Mark selected exercises as unpublished')
 def make_unpublished(modeladmin, request, queryset):
     queryset.update(published=False)
+
+
+# admin Filters
+class IsRootFilter(admin.EmptyFieldListFilter):
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.title = _('is root')
+
+    def choices(self, changelist):
+        for lookup, title in (
+            (None, _("All")),
+            ("1", _("Yes")),
+            ("0", _("No")),
+        ):
+            yield {
+                "selected": self.lookup_val == lookup,
+                "query_string": changelist.get_query_string(
+                    {self.lookup_kwarg: lookup}
+                ),
+                "display": title,
+            }
 
 
 # Inline elements
@@ -80,7 +103,7 @@ class AssemblyCategoryInline(admin.TabularInline):
 class ExerciseAdmin(nested_admin.NestedModelAdmin):
     list_display = ('__str__', 'creator', 'text_type', 'short_comment', 'date_modified', 'published')
     #list_display_links = list_display
-    list_filter = ('creator', 'published', 'text_type', ('date_modified', admin.DateFieldListFilter))
+    list_filter = ('creator', 'published', 'text_type', ('date_modified', admin.DateFieldListFilter), ('children', IsRootFilter))
 
     search_fields = ('title', 'text', 'creator__last_name__startswith', 'text_type__startswith')
     search_help_text = "Searches anywhere in titles and text;\nSearches if creator or texttype start with the query"
