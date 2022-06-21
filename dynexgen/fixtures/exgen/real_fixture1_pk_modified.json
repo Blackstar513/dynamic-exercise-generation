@@ -1,0 +1,385 @@
+[
+{
+    "model": "exgen.exercise",
+    "pk": 100,
+    "fields": {
+        "title": "",
+        "text": "Es fällt genau zweimal die Sechs.",
+        "text_type": "PLAIN",
+        "comment": "",
+        "published": false,
+        "date_created": "2022-06-21T13:38:55.431Z",
+        "date_modified": "2022-06-21T13:38:55.431Z",
+        "creator": 1
+    }
+},
+{
+    "model": "exgen.exercise",
+    "pk": 200,
+    "fields": {
+        "title": "",
+        "text": "Es fällt mindestens zweimal die Sechs.",
+        "text_type": "PLAIN",
+        "comment": "",
+        "published": false,
+        "date_created": "2022-06-21T13:39:51.153Z",
+        "date_modified": "2022-06-21T13:39:51.153Z",
+        "creator": 1
+    }
+},
+{
+    "model": "exgen.exercise",
+    "pk": 300,
+    "fields": {
+        "title": "Diskrete Verteilung",
+        "text": "Es wird mit 5 Würfeln gewürfelt. Die Würfel sind fair und ihre Würfelergebnisse sind voneinander unabhängig.\r\nBerechne die Wahrscheinlichkeit des Ereignisses!",
+        "text_type": "PLAIN",
+        "comment": "Echte Aufgabe",
+        "published": false,
+        "date_created": "2022-06-21T13:40:22.008Z",
+        "date_modified": "2022-06-21T13:42:51.153Z",
+        "creator": 1
+    }
+},
+{
+    "model": "exgen.exercise",
+    "pk": 400,
+    "fields": {
+        "title": "",
+        "text": "Es fällt höchstens zweimal die Sechs.",
+        "text_type": "PLAIN",
+        "comment": "",
+        "published": false,
+        "date_created": "2022-06-21T13:41:14.945Z",
+        "date_modified": "2022-06-21T13:41:14.946Z",
+        "creator": 1
+    }
+},
+{
+    "model": "exgen.exercise",
+    "pk": 500,
+    "fields": {
+        "title": "",
+        "text": "Bei genau drei Würfeln fällt die Augenzahl 4 oder größer.",
+        "text_type": "PLAIN",
+        "comment": "",
+        "published": false,
+        "date_created": "2022-06-21T13:41:46.258Z",
+        "date_modified": "2022-06-21T13:41:46.258Z",
+        "creator": 1
+    }
+},
+{
+    "model": "exgen.exercise",
+    "pk": 600,
+    "fields": {
+        "title": "",
+        "text": "Bei mindestens drei Würfeln fällt die Augenzahl 4 oder größer.",
+        "text_type": "PLAIN",
+        "comment": "",
+        "published": false,
+        "date_created": "2022-06-21T13:42:31.758Z",
+        "date_modified": "2022-06-21T13:42:31.758Z",
+        "creator": 1
+    }
+},
+{
+    "model": "exgen.exercise",
+    "pk": 700,
+    "fields": {
+        "title": "Lorenzkurve",
+        "text": "Zeichnen Sie eine Lorenzkurve für die folgende Tabelle\r\n% Please add the following required packages to your document preamble:\r\n% \\usepackage[table,xcdraw]{xcolor}\r\n% If you use beamer only pass \"xcolor=table\" option, i.e. \\documentclass[xcolor=table]{beamer}\r\n\\begin{table}[]\r\n\\caption{}\r\n\\label{tab:my-table}\r\n\\begin{tabular}{rr}\r\n\\rowcolor[HTML]{5B9BD5} \r\n\\multicolumn{1}{l}{\\cellcolor[HTML]{5B9BD5}{\\color[HTML]{FFFFFF} \\textbf{Person}}} & \\multicolumn{1}{l}{\\cellcolor[HTML]{5B9BD5}{\\color[HTML]{FFFFFF} \\textbf{Einkommen}}} \\\\\r\nKlaus & 2000 \\\\\r\nDieter & 3000 \\\\\r\nAnna & 3200 \\\\\r\nYusuf & 6000 \\\\\r\nMarina & 8000\r\n\\end{tabular}\r\n\\end{table}",
+        "text_type": "LATEX",
+        "comment": "Echte Aufgabe mit Tabelle",
+        "published": false,
+        "date_created": "2022-06-21T14:04:05.722Z",
+        "date_modified": "2022-06-21T14:23:52.900Z",
+        "creator": 1
+    }
+},
+{
+    "model": "exgen.exercise",
+    "pk": 800,
+    "fields": {
+        "title": "",
+        "text": "Zeichnen Sie einen Wahrscheinlichkeitsbaum.",
+        "text_type": "PLAIN",
+        "comment": "",
+        "published": false,
+        "date_created": "2022-06-21T14:07:58.806Z",
+        "date_modified": "2022-06-21T14:15:56.823Z",
+        "creator": 1
+    }
+},
+{
+    "model": "exgen.exercise",
+    "pk": 900,
+    "fields": {
+        "title": "",
+        "text": "Wie groß ist die Wahrscheinlichkeit dass eine Person männlich ist, wenn wir\r\nwissen, dass eine Rot-Grün Sehschwäche vorliegt.",
+        "text_type": "MARKDOWN",
+        "comment": "",
+        "published": false,
+        "date_created": "2022-06-21T14:15:15.644Z",
+        "date_modified": "2022-06-21T14:15:15.644Z",
+        "creator": 1
+    }
+},
+{
+    "model": "exgen.exercise",
+    "pk": 1000,
+    "fields": {
+        "title": "U7",
+        "text": "9 % der Männer aber nur 0,8% der Frauen haben eine Rot-Grün Sehschwäche.\r\nDer Anteil der Männer an der Bevölkerung beträgt 47%.",
+        "text_type": "MARKDOWN",
+        "comment": "Echte Aufgabe. Mischung aus markdown, plaintext und latex",
+        "published": false,
+        "date_created": "2022-06-21T14:16:03.646Z",
+        "date_modified": "2022-06-21T14:16:03.646Z",
+        "creator": 1
+    }
+},
+{
+    "model": "exgen.answer",
+    "pk": 100,
+    "fields": {
+        "text": "B(5;1/6) f(2)=0,161",
+        "text_type": "MARKDOWN",
+        "date_created": "2022-06-21T13:38:55.433Z",
+        "date_modified": "2022-06-21T13:38:55.433Z",
+        "exercise": 100
+    }
+},
+{
+    "model": "exgen.answer",
+    "pk": 200,
+    "fields": {
+        "text": "B(5;1/6) 1-F(1)=0,196",
+        "text_type": "PLAIN",
+        "date_created": "2022-06-21T13:39:51.155Z",
+        "date_modified": "2022-06-21T13:39:51.155Z",
+        "exercise": 200
+    }
+},
+{
+    "model": "exgen.answer",
+    "pk": 300,
+    "fields": {
+        "text": "B(5;1/6) F(2)=0,964",
+        "text_type": "PLAIN",
+        "date_created": "2022-06-21T13:41:14.947Z",
+        "date_modified": "2022-06-21T13:41:14.947Z",
+        "exercise": 400
+    }
+},
+{
+    "model": "exgen.answer",
+    "pk": 400,
+    "fields": {
+        "text": "B(5;3/6) f(3)=0,312",
+        "text_type": "PLAIN",
+        "date_created": "2022-06-21T13:41:46.259Z",
+        "date_modified": "2022-06-21T13:41:46.259Z",
+        "exercise": 500
+    }
+},
+{
+    "model": "exgen.answer",
+    "pk": 500,
+    "fields": {
+        "text": "B(5;3/6) 1-F(2)=0,5",
+        "text_type": "PLAIN",
+        "date_created": "2022-06-21T13:42:31.759Z",
+        "date_modified": "2022-06-21T13:42:31.759Z",
+        "exercise": 600
+    }
+},
+{
+    "model": "exgen.answer",
+    "pk": 600,
+    "fields": {
+        "text": "\\begin{table}[]\r\n\\begin{tabular}{rrrrrr}\r\n\\rowcolor[HTML]{5B9BD5} \r\n\\multicolumn{1}{l}{\\cellcolor[HTML]{5B9BD5}{\\color[HTML]{FFFFFF} \\textbf{Person}}} & \\multicolumn{1}{l}{\\cellcolor[HTML]{5B9BD5}{\\color[HTML]{FFFFFF} \\textbf{Rel. Häufigkeit}}} & \\multicolumn{1}{l}{\\cellcolor[HTML]{5B9BD5}{\\color[HTML]{FFFFFF} \\textbf{kumulative Häufigkeit}}} & \\multicolumn{1}{l}{\\cellcolor[HTML]{5B9BD5}{\\color[HTML]{FFFFFF} \\textbf{Einkommen}}} & \\multicolumn{1}{l}{\\cellcolor[HTML]{5B9BD5}{\\color[HTML]{FFFFFF} \\textbf{anteiliges Einkommen}}} & \\multicolumn{1}{l}{\\cellcolor[HTML]{5B9BD5}{\\color[HTML]{FFFFFF} \\textbf{kumuliertes anteiliges Einkommen}}} \\\\\r\nKlaus & 0,2 & 0,2 & 2000 & 0,10 & 0,10 \\\\\r\nDieter & 0,2 & 0,4 & 3000 & 0,15 & 0,25 \\\\\r\nAnna & 0,2 & 0,6 & 3200 & 0,16 & 0,41 \\\\\r\nYusuf & 0,2 & 0,8 & 6000 & 0,18 & 0,60 \\\\\r\nMarina & 0,2 & 1 & 8000 & 0,40 & 1,00 \\\\\r\n &  &  & 19800 &  & \r\n\\end{tabular}\r\n\\end{table}",
+        "text_type": "LATEX",
+        "date_created": "2022-06-21T14:04:05.724Z",
+        "date_modified": "2022-06-21T14:23:52.905Z",
+        "exercise": 700
+    }
+},
+{
+    "model": "exgen.answer",
+    "pk": 700,
+    "fields": {
+        "text": "\\begin{table}[]\r\n\\begin{tabular}{lr}\r\nP(M|S)=(P(S|M)*P(M))/P(S) &  \\\\\r\nP(M|S)=(0,09*0,47)/P(S) & P(S)=P(W)*P(S|W)+P(M)*P(S|M) \\\\\r\n & P(S)=0,53*0,008+0,47*0,09=0,047 \\\\\r\nP(M|S)=(0,09*0,47)/0,047 &  \\\\\r\nP(M|S)=0,909 & \r\n\\end{tabular}\r\n\\end{table}",
+        "text_type": "LATEX",
+        "date_created": "2022-06-21T14:15:15.645Z",
+        "date_modified": "2022-06-21T14:15:15.645Z",
+        "exercise": 900
+    }
+},
+{
+    "model": "exgen.answerpicture",
+    "pk": 100,
+    "fields": {
+        "image": "answer_images/a4.png",
+        "text": "Die Lorenzkurve",
+        "answer": 600
+    }
+},
+{
+    "model": "exgen.category",
+    "pk": 100,
+    "fields": {
+        "name": "Wahrscheinlichkeitsrechnung"
+    }
+},
+{
+    "model": "exgen.category",
+    "pk": 200,
+    "fields": {
+        "name": "Deskriptive Statistik"
+    }
+},
+{
+    "model": "exgen.exercisedependency",
+    "pk": 100,
+    "fields": {
+        "parent": 300,
+        "child": 100,
+        "hierarchy": "higher"
+    }
+},
+{
+    "model": "exgen.exercisedependency",
+    "pk": 200,
+    "fields": {
+        "parent": 300,
+        "child": 200,
+        "hierarchy": "higher"
+    }
+},
+{
+    "model": "exgen.exercisedependency",
+    "pk": 300,
+    "fields": {
+        "parent": 300,
+        "child": 400,
+        "hierarchy": "higher"
+    }
+},
+{
+    "model": "exgen.exercisedependency",
+    "pk": 400,
+    "fields": {
+        "parent": 300,
+        "child": 500,
+        "hierarchy": "higher"
+    }
+},
+{
+    "model": "exgen.exercisedependency",
+    "pk": 500,
+    "fields": {
+        "parent": 300,
+        "child": 600,
+        "hierarchy": "higher"
+    }
+},
+{
+    "model": "exgen.exercisedependency",
+    "pk": 600,
+    "fields": {
+        "parent": 1000,
+        "child": 800,
+        "hierarchy": "higher"
+    }
+},
+{
+    "model": "exgen.exercisedependency",
+    "pk": 700,
+    "fields": {
+        "parent": 1000,
+        "child": 900,
+        "hierarchy": "higher"
+    }
+},
+{
+    "model": "exgen.exercisecategory",
+    "pk": 100,
+    "fields": {
+        "category": 100,
+        "exercise": 100
+    }
+},
+{
+    "model": "exgen.exercisecategory",
+    "pk": 200,
+    "fields": {
+        "category": 100,
+        "exercise": 200
+    }
+},
+{
+    "model": "exgen.exercisecategory",
+    "pk": 300,
+    "fields": {
+        "category": 100,
+        "exercise": 300
+    }
+},
+{
+    "model": "exgen.exercisecategory",
+    "pk": 400,
+    "fields": {
+        "category": 100,
+        "exercise": 400
+    }
+},
+{
+    "model": "exgen.exercisecategory",
+    "pk": 500,
+    "fields": {
+        "category": 100,
+        "exercise": 500
+    }
+},
+{
+    "model": "exgen.exercisecategory",
+    "pk": 600,
+    "fields": {
+        "category": 100,
+        "exercise": 600
+    }
+},
+{
+    "model": "exgen.exercisecategory",
+    "pk": 700,
+    "fields": {
+        "category": 200,
+        "exercise": 700
+    }
+},
+{
+    "model": "exgen.exercisecategory",
+    "pk": 800,
+    "fields": {
+        "category": 100,
+        "exercise": 800
+    }
+},
+{
+    "model": "exgen.exercisecategory",
+    "pk": 900,
+    "fields": {
+        "category": 100,
+        "exercise": 900
+    }
+},
+{
+    "model": "exgen.exercisecategory",
+    "pk": 1000,
+    "fields": {
+        "category": 100,
+        "exercise": 1000
+    }
+}
+]
