@@ -107,6 +107,10 @@ class Exercise(models.Model):
 
         return reverse_nested_dependencies
 
+    def get_absolute_url(self):
+        from django.urls import reverse
+        return reverse('exgen:answer_bottom_up', kwargs={'pk': self.pk})
+
     def __str__(self):
         if self.title:
             return self.title
@@ -204,8 +208,8 @@ class ExerciseAssembly(models.Model):
 
 
 class AssemblyCategory(models.Model):
-    Assembly = models.ForeignKey(Assembly, related_name='category_assemblies', on_delete=models.CASCADE, verbose_name="Assembly")
-    category = models.ForeignKey(Category, related_name='cassembly_categories', on_delete=models.CASCADE,
+    assembly = models.ForeignKey(Assembly, related_name='category_assemblies', on_delete=models.CASCADE, verbose_name="Assembly")
+    category = models.ForeignKey(Category, related_name='assembly_categories', on_delete=models.CASCADE,
                                  verbose_name="Categorie")
 
 
