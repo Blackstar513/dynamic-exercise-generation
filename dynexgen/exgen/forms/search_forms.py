@@ -18,3 +18,16 @@ class ExerciseSearchForm(forms.Form):
                                                widget=FilteredSelectMultiple("Lecturers", is_stacked=False),
                                                required=False)
 
+
+class AssemblySearchForm(forms.Form):
+    title = forms.CharField(label="Title", widget=forms.TextInput, required=False)
+    categories = forms.ModelMultipleChoiceField(label="Categories", queryset=Category.objects.all(),
+                                                widget=FilteredSelectMultiple("Categories", is_stacked=False),
+                                                required=False)
+    category_connect = forms.ChoiceField(label="Search must include", choices=(('all', "All"),
+                                                                               ('any', "Any")),
+                                         widget=forms.RadioSelect, initial='all', required=True)
+    lecturers = forms.ModelMultipleChoiceField(label="Lecturers", queryset=User.objects.all(),
+                                               widget=FilteredSelectMultiple("Lecturers", is_stacked=False),
+                                               required=False)
+

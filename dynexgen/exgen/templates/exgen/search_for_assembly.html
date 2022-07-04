@@ -1,0 +1,41 @@
+{% extends "exgen/base.html" %}
+{% load static %}
+{% block head_append %}
+<script>window.jquery || document.write("<script src=\"{% static 'exgen/admin_copies/js/jquery.min.js' %}\"><\/script>")</script>
+<script src="{% static 'exgen/admin_copies/js/jquery.init.js' %}"></script>
+<script type="text/javascript" src="{% url 'javascript-catalog' %}" ></script>
+<script type="text/javascript" src="{% static 'exgen/admin_copies/js/core.js' %}"></script>
+<script type="text/javascript" src="{% static 'exgen/admin_copies/js/SelectBox.js' %}"></script>
+<script type="text/javascript" src="{% static 'exgen/admin_copies/js/SelectFilter2.js' %}"></script>
+<link rel="stylesheet" type="text/css" href="{% static 'exgen/admin_copies/css/widgets.css' %}">
+{% endblock %}
+{% block title %}Search for Assemblies{% endblock %}
+
+{% block content %}
+<form method="GET">
+    <table>
+        {{ form.as_table }}
+    </table>
+    <input type="submit" value="Search">
+</form>
+<br>
+{% for assembly in search_results %}
+    <details>
+        <summary><a href="{% url 'exgen:index' %}">{{ assembly.title }}</a></summary>
+        <p>
+            Categories:
+            {% for category in assembly.category.all %}
+                {{ category }},
+            {% endfor %}
+        </p>
+        <div>
+            Exercises:<br>
+            <ol>
+            {% for ex_as in assembly.exercise_assemblies.all|dictsort:'rank' %}
+                <li value="{{ ex_as.rank }}"><a href="{% url 'exgen:top_down' ex_as.exercise.id %}">{{ ex_as.exercise }}</a></li>
+            {% endfor %}
+            </ol>
+        </div>
+    </details>
+{% endfor %}
+{% endblock %}
