@@ -13,6 +13,11 @@ TEXT_TYPE_CHOICES = [
 ]
 
 
+class ExerciseIsRootManager(models.Manager):
+    def get_queryset(self):
+        return super().get_queryset().filter(children__isnull=True)
+
+
 # Create your models here.
 class Course(models.Model):
     name = models.CharField(max_length=100, verbose_name="Kursname")
@@ -28,6 +33,8 @@ class Course(models.Model):
 
 
 class Exercise(models.Model):
+    objects = models.Manager()
+    root = ExerciseIsRootManager()
     title = models.CharField(verbose_name="Title", max_length=50, blank=True, null=False)
     text = models.TextField(verbose_name="Aufgabentext")
     text_type = models.CharField(verbose_name="Texttype", max_length=15, choices=TEXT_TYPE_CHOICES, default=MARKDOWN)
