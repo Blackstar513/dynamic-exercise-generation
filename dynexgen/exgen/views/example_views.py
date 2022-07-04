@@ -27,5 +27,15 @@ class ExerciseAnswerBottomUpView(generic.ListView):
         return {'exercise_dependencies': Exercise.objects.get(pk=self.kwargs['pk']).get_all_parent_dependencies_correctly_nested(),
                 'show_answers': True,
                 'exercise_id': self.kwargs['pk']}
+
+
+class ExerciseTopDownView(generic.ListView):
+    template_name = 'exgen/exercise_list.html'
+    context_object_name = 'context'
+
+    def get_queryset(self):
+        return {'exercise_dependencies': Exercise.objects.get(pk=self.kwargs['pk']).get_root().get_all_child_dependencies(),
+                'show_answers': False,
+                'exercise_id': self.kwargs['pk']}
             
 
