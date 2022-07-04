@@ -93,10 +93,26 @@ class ExerciseAssemblyInline(admin.TabularInline):
     model = ExerciseAssembly
     extra = 1
 
+    def get_formset(self, request, obj=None, **kwargs):
+        formset = super().get_formset(request, obj, **kwargs)
+        exercise = formset.form.base_fields['exercise']
+        exercise.widget.can_add_related = False
+        exercise.widget.can_change_related = False
+        exercise.widget.can_delete_related = False
+        return formset
+
 
 class AssemblyCategoryInline(admin.TabularInline):
     model = AssemblyCategory
     extra = 1
+
+    def get_formset(self, request, obj=None, **kwargs):
+        formset = super().get_formset(request, obj, **kwargs)
+        category = formset.form.base_fields['category']
+        category.widget.can_add_related = False
+        category.widget.can_change_related = False
+        category.widget.can_delete_related = False
+        return formset
 
 
 # Custom admin forms
