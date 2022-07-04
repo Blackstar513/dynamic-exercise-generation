@@ -47,6 +47,14 @@ class Exercise(models.Model):
     def is_root(self):
         return not self.children.exists()
 
+    def get_root(self):
+        if self.is_root():
+            return self
+        else:
+            # there can be only on root even if there are multiple depenencies (assuming the exercise is correctly configured)
+            # get the first dependency where self is the child
+            return self.children.all()[0].parent.get_root()
+
     def get_all_parent_dependencies(self):
         
         # list of all even dependencies
@@ -106,6 +114,33 @@ class Exercise(models.Model):
         _, reverse_nested_dependencies = reverse_nesting(parent_dependencies)
 
         return reverse_nested_dependencies
+
+    def get_all_child_dependencies(self):
+        # list of all even children
+        even_children = []
+        # list of all lower children
+        lower_children = []
+
+        # get all dependencies where self is the parent recursively
+        for d in self.parents.all():
+            child_dependencies = d.child.get_all_child_dependencies()
+
+            if d.hierarchy == 'higher':
+                lower_children.extend(child_dependencies)
+            else:
+                even_children.extend(child_dependencies)
+
+        # list of all children
+        children = [self]
+        # keep even children on same level as self
+        children.extend(even_children)
+        # append lower children if there are any
+        if lower_children:
+            # ensure that no lower children doubling exists (as long as there is no weird exercise setup/dependencies only exist one layer up)
+            children.append(tuple(dict.fromkeys(tuple(lower_children))))
+
+        # ensure that no even children doubling exists (as long as there is no weird exercise setup)
+        return list(dict.fromkeys(tuple(children)))
 
     def get_absolute_url(self):
         from django.urls import reverse
