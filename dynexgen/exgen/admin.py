@@ -93,6 +93,11 @@ class ExerciseAssemblyInline(admin.TabularInline):
     model = ExerciseAssembly
     extra = 1
 
+    def formfield_for_foreignkey(self, db_field, request, **kwargs):
+        if db_field.name == "exercise":
+            kwargs["queryset"] = Exercise.root.filter(published=True)
+        return super().formfield_for_foreignkey(db_field, request, **kwargs)
+
     def get_formset(self, request, obj=None, **kwargs):
         formset = super().get_formset(request, obj, **kwargs)
         exercise = formset.form.base_fields['exercise']
