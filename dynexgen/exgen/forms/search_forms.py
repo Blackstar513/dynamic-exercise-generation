@@ -17,6 +17,7 @@ class ExerciseSearchForm(forms.Form):
     lecturers = forms.ModelMultipleChoiceField(label="Lecturers", queryset=User.objects.all(),
                                                widget=FilteredSelectMultiple("Lecturers", is_stacked=False),
                                                required=False)
+    only_root = forms.BooleanField(label="Search only for root exercises?", required=False)
 
 
 class AssemblySearchForm(forms.Form):

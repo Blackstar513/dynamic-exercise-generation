@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.db.models import Q
 from ..forms.search_forms import ExerciseSearchForm, AssemblySearchForm
+from ..forms.select_forms import SelectExercisesForm
 from ..models import Exercise, Assembly
 
 
@@ -15,29 +16,37 @@ def search_for_exercises(request):
 
         category_include_all = request.GET.get('category_connect') == 'all'
 
+        if request.GET.get('only_root'):
+            exercise_manager = Exercise.root
+        else:
+            exercise_manager = Exercise.objects
+
         query_list = [Q(text__icontains=text), Q(published=True)]
         if lecturers:
             query_list.append(Q(creator__pk__in=lecturers))
 
         if categories:
             if category_include_all:
-                search_results = Exercise.objects.all()
+                search_results = exercise_manager.all()
                 for category in categories:
                     search_results = search_results.filter(*query_list,
                                                            Q(category__pk__exact=category))
             else:
-                search_results = Exercise.objects.filter(*query_list,
+                search_results = exercise_manager.filter(*query_list,
                                                          Q(category__pk__in=categories))
         else:
-            search_results = Exercise.objects.filter(*query_list)
+            search_results = exercise_manager.filter(*query_list)
 
         form = ExerciseSearchForm(request.GET)
+        #form_select = SelectExercisesForm(exercise_choices=search_results)
     else:
         form = ExerciseSearchForm()
+        #form_select = SelectExercisesForm([])
 
     return render(request, 'exgen/search_for_exercise.html',
                   {'search_results': search_results,
                    'form': form})
+                   #'form_select': form_select})
 
 
 def search_for_assemblies(request):
