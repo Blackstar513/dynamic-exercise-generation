@@ -211,6 +211,10 @@ class Assembly(models.Model):
     exercise = models.ManyToManyField('Exercise', through='ExerciseAssembly', verbose_name="Exercises")
     category = models.ManyToManyField('Category', through='AssemblyCategory', verbose_name="Categories")
 
+    def get_absolute_url(self):
+        from django.urls import reverse
+        return reverse('exgen:index')
+
 
 class ExerciseDependency(models.Model):
     HIERARCHY_CHOICES = [
