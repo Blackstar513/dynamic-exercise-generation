@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.db.models import Q
 from ..forms.search_forms import ExerciseSearchForm, AssemblySearchForm
-#from ..forms.select_forms import SelectExercisesForm
+from ..forms.select_forms import SelectExercisesForm
 from ..models import Exercise, Assembly
 
 
@@ -38,15 +38,15 @@ def search_for_exercises(request):
             search_results = exercise_manager.filter(*query_list)
 
         form = ExerciseSearchForm(request.GET)
-        #form_select = SelectExercisesForm(exercise_choices=search_results)
+        form_select = SelectExercisesForm(exercise_choices=search_results)
     else:
         form = ExerciseSearchForm()
-        #form_select = SelectExercisesForm([])
+        form_select = SelectExercisesForm([])
 
     return render(request, 'exgen/search_for_exercise.html',
                   {'search_results': search_results,
-                   'form': form})
-                   #'form_select': form_select})
+                   'form': form,
+                   'form_select': form_select})
 
 
 def search_for_assemblies(request):

@@ -31,4 +31,12 @@
         <p>Fulltext: {{ exercise.text }}</p>
     </details>
 {% endfor %}
+
+<form action="{% url 'exgen:type_views' %}" method="POST">
+    {% csrf_token %}
+    <table>
+        {{ form_select.as_table }}
+    </table>
+    <input type="submit" value="Generate">
+</form>
 {% endblock %}
