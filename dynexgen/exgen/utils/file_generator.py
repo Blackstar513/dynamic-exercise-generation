@@ -4,9 +4,14 @@ import pandoc
 from .pandoc_exercise_composer import parse_exercise_tree
 
 
+from ..models import Exercise, ExerciseDependency
+
+
 def gather_assembly(configuration):
-    exercise_id = configuration["exercise_id"]
-    exercise = Exercise.objects.get(pk=exercise_id).get_all_parent_dependencies_correctly_nested()
+    exercise_ids = configuration.getlist("exercise_id")
+    exercise = []
+    for exid in exercise_ids:
+        exercise += Exercise.objects.get(pk=exid).get_all_parent_dependencies_correctly_nested()
     return exercise
 
 
