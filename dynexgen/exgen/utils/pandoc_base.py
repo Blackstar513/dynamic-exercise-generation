@@ -1,5 +1,8 @@
 import subprocess, sys, os, tempfile
+from traceback import print_exception
+
 import pandoc
+from .pandoc_exercise_composer import parse_exercise_tree
 
 ########
 # Pandoc External
@@ -80,34 +83,25 @@ def source(doc, doctype):
 def target(doc, doctype):
     assert(doctype in pd_formats)
     #if doctype in template_option_dict:
-    return pandoc.write(doc,format=doctype,options=template_option_dict[doctype])
-    #return pandoc.write(doc, format=doctype)
-
-def parse_exercise_tree(exercise_tree):
-    markdown_doc = ""
-    for node in exercise_tree:
-        if isinstance(node,list):
-            markdown_doc += parse_exercise_tree(node)
-        else:
-            markdown_doc += node.text
-        markdown_doc += "\n\n"
-    return markdown_doc
+    #return pandoc.write(doc,format=doctype,options=template_option_dict[doctype])
+    return pandoc.write(doc, format=doctype)
 
 
-def exercise_as_file(exercise,tempdir,doctype):
-    filename = tempdir+"tempfile.pdf"
-    markdown_doc = parse_exercise_tree(exercise)
+def exercise_as_file(exercise,tempdir,configuration):
     try:
-        pandoc_data = pandoc.read(markdown_doc,format="markdown")
+        pandoc_data = parse_exercise_tree(exercise,options=configuration)
     except Exception as e:
-        err= "Error on document parsing:"+str(e)
-        print(err)
+        err= "Error on document parsing: "+str(e)
+        print_exception(e)
+        print(e)
         return err
     try:
-        target_doc = pandoc.write(pandoc_data,format="pdf")
+        #pandoc_data = pandoc.read("hallo",format="markdown")
+        #print(pandoc_data)
+        target_doc = pandoc.write(pandoc_data,format=configuration["doctype"])
     except Exception as e:
         err = "Error on document writing:"+str(e)
-        print(err)
+        print_exception(e)
         return err
 
     return target_doc
