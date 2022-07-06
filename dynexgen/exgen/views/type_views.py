@@ -9,4 +9,6 @@ def type_views(request):
   
   # render function takes argument - request
   # and return HTML as response
-    return render(request, "exgen/type_selector.html",{"form":SelectFileTypeForm()})
+    return render(request, "exgen/type_selector.html",
+                  {"form": SelectFileTypeForm(initial={'exercises': request.POST.getlist('exercises'),
+                                                       'assembly': request.POST.get('assembly')})})
