@@ -25,7 +25,7 @@ class AssemblySearchForm(forms.Form):
     categories = forms.ModelMultipleChoiceField(label="Categories", queryset=Category.objects.all(),
                                                 widget=FilteredSelectMultiple("Categories", is_stacked=False),
                                                 required=False)
-    category_connect = forms.ChoiceField(label="Search must include", choices=(('all', "All"),
+    category_connect = forms.ChoiceField(label="Category Constraint", choices=(('all', "All"),
                                                                                ('any', "Any")),
                                          widget=forms.RadioSelect, initial='all', required=True)
     lecturers = forms.ModelMultipleChoiceField(label="Lecturers", queryset=User.objects.all(),
