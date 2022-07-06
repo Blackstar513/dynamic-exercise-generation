@@ -41,7 +41,7 @@ def search_for_exercises(request):
         form_select = SelectExercisesForm(exercise_choices=search_results)
     else:
         form = ExerciseSearchForm()
-        form_select = SelectExercisesForm([])
+        form_select = None
 
     return render(request, 'exgen/search_for_exercise.html',
                   {'search_results': search_results,
