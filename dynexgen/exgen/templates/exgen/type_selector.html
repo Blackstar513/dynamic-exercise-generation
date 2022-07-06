@@ -1,12 +1,17 @@
+{% extends "exgen/base.html" %}
+{% block title %}Type Selector{% endblock %}
 
+{% block content %}
 <html>
 
 <form action="{% url 'exgen:generator' %}" method="POST">
+ {% csrf_token %}
  <table> 
  {{ form.as_table}}
  </table>
-  <div><button type="submit">GET</button></div>
+  <div><button type="submit">Generate</button></div>
 </form>
 <br>
 </html>
+{% endblock %}
 
