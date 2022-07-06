@@ -1,5 +1,6 @@
 {% extends "exgen/base.html" %}
 {% load static %}
+{% load filters %}
 {% block head_append %}
 <script>window.jquery || document.write("<script src=\"{% static 'exgen/admin_copies/js/jquery.min.js' %}\"><\/script>")</script>
 <script src="{% static 'exgen/admin_copies/js/jquery.init.js' %}"></script>
@@ -12,31 +13,63 @@
 {% block title %}Search{% endblock %}
 
 {% block content %}
-<form method="GET">
+<form style="overflow-y:auto;" method="GET">
+    <div class="fieldWrapper">
+        <label for="id_text" style="display: block;"><strong>{{ form.text.label }}:</strong></label>
+        {{ form.text }}
+    </div>
     <table>
-        {{ form.as_table }}
+        <tr>
+            <td class="fieldWrapper">
+                <label for="id_categories" style="display: block;"><strong>{{ form.categories.label }}:</strong></label>
+                {{ form.categories }}
+            </td>
+        </tr>
+        <tr>
+            <td class="fieldWrapper">
+                <label for="id_lecturers" style="display: block;"><strong>{{ form.lecturers.label }}:</strong></label>
+                {{ form.lecturers }}
+            </td>
+        </tr>
     </table>
+    <table cellpadding="10" border="1">
+        <tr valign="top">
+            <td class="fieldWrapper">
+                <label for="id_category_connect" style="display: block;"><strong>{{ form.category_connect.label }}:</strong></label>
+                {{ form.category_connect }}
+            </td>
+            <td class="fieldWrapper">
+                <label for="id_only_root"><strong>{{ form.only_root.label }}</strong></label>
+                {{ form.only_root }}
+            </td>
+        </tr>
+    </table>
+    <br>
     <input type="submit" value="Search">
 </form>
-<br>
-{% for exercise in search_results %}
-    <details>
-        <summary><a href="{% url 'exgen:bottom_up' exercise.id %}">{{ exercise }}</a></summary>
-        <p>
-            Categories:
-            {% for category in exercise.category.all %}
-                {{ category }},
-            {% endfor %}
-        </p>
-        <p>Fulltext: {{ exercise.text }}</p>
-    </details>
-{% endfor %}
+
+<hr>
+
+{% if form_select %}
 
 <form action="{% url 'exgen:type_views' %}" method="POST">
     {% csrf_token %}
     <table>
-        {{ form_select.as_table }}
+        <td>
+             <label for="id_lecturers" style="display: block;"><strong>{{ form_select.exercises.label }}:</strong></label>
+            {{ form_select.exercises}}
+        </td>
     </table>
+    <br>
     <input type="submit" value="Generate">
 </form>
+
+{% else %}
+<!--Print blank space-->
+{% for _ in 5|range %}
+    <br>
+{% endfor %}
+
+{% endif %}
+
 {% endblock %}
