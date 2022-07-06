@@ -1,0 +1,12 @@
+
+<html>
+
+<form action="{% url 'exgen:generator' %}" method="POST">
+ <table> 
+ {{ form.as_table}}
+ </table>
+  <div><button type="submit">GET</button></div>
+</form>
+<br>
+</html>
+
