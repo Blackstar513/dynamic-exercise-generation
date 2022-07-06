@@ -1,5 +1,6 @@
 {% extends "exgen/base.html" %}
 {% load static %}
+{% load filters %}
 {% block head_append %}
 <script>window.jquery || document.write("<script src=\"{% static 'exgen/admin_copies/js/jquery.min.js' %}\"><\/script>")</script>
 <script src="{% static 'exgen/admin_copies/js/jquery.init.js' %}"></script>
@@ -12,16 +13,43 @@
 {% block title %}Search for Assemblies{% endblock %}
 
 {% block content %}
-<form method="GET">
+<form style="overflow-y:auto;" method="GET">
     <table>
-        {{ form.as_table }}
+        <tr>
+            <td class="fieldWrapper">
+                <label for="id_categories" style="display: block;"><strong>{{ form.categories.label }}:</strong></label>
+                {{ form.categories }}
+            </td>
+        </tr>
+        <tr>
+            <td class="fieldWrapper">
+                <label for="id_lecturers" style="display: block;"><strong>{{ form.lecturers.label }}:</strong></label>
+                {{ form.lecturers }}
+            </td>
+        </tr>
     </table>
+    <table cellpadding="10" border="1">
+        <tr valign="top">
+            <td class="fieldWrapper">
+                <label for="id_category_connect" style="display: block;"><strong>{{ form.category_connect.label }}:</strong></label>
+                {{ form.category_connect }}
+            </td>
+            <td class="fieldWrapper">
+                <label for="id_title" style="display: block;"><strong>{{ form.title.label }}:</strong></label>
+                {{ form.title }}
+            </td>
+        </tr>
+    </table>
+    <br>
     <input type="submit" value="Search">
 </form>
-<br>
+
+<hr>
+
 {% for assembly in search_results %}
+<form>
     <details>
-        <summary><a href="{% url 'exgen:index' %}">{{ assembly.title }}</a></summary>
+        <summary><input type="Submit" value="{{ assembly.title }}"></summary>
         <p>
             Categories:
             {% for category in assembly.category.all %}
@@ -37,5 +65,12 @@
             </ol>
         </div>
     </details>
+</form>
+
+{% empty %}
+    <!--Print blank space-->
+    {% for _ in 5|range %}
+        <br>
+    {% endfor %}
 {% endfor %}
 {% endblock %}
