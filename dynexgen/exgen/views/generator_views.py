@@ -1,7 +1,18 @@
-from django.http import HttpResponse, HttpResponseNotFound, HttpResponseBadRequest
-from tempfile import TemporaryDirectory
-from ..models import Exercise, ExerciseDependency
-from ..utils.pandoc_base import exercise_as_file
+from traceback import print_exception, format_exception
+
+from django.utils.datastructures import MultiValueDictKeyError
+from django.conf import settings as django_settings
+from django.http import (
+        HttpResponse,
+        HttpResponseNotFound,
+        HttpResponseBadRequest,
+        HttpResponseServerError,
+        )
+
+
+#from ..models import Exercise, ExerciseDependency
+#from ..utils.pandoc_base import exercise_as_file
+from ..utils.file_generator import generate_file
 
 
 def sanitize_configuration(configuration):
@@ -20,18 +31,32 @@ _content_types = {
         }
 
 
-def converted_file_response_view(request, exercise_id):
+def converted_file_response_view(request):
     configuration = request.GET
-    if (response := sanitize_configuration(configuration)) is not None:
-        return response
-
-    exercise = Exercise.objects.get(pk=exercise_id).get_all_parent_dependencies_correctly_nested()
-    with TemporaryDirectory() as tempdir:
-        response_file = exercise_as_file(exercise, tempdir, configuration)
+    try:
+        response_file = generate_file(configuration)
         response = HttpResponse(content=response_file)
         response['Content-Type'] = _content_types.get(configuration["doctype"],
                                                       'text/plain')
         return response
+
+    except MultiValueDictKeyError as e:
+        parameter=str(e)[1:-1]
+        msg = f"Needs {parameter} as query parameter."
+        msg += f"Please append an appropriate &{parameter}= to url"
+        return HttpResponseBadRequest(msg)
+
+    except Exception as e:
+        print_exception(e)
+        if django_settings.DEBUG:
+            err = "<br>".join(format_exception(e)).replace("\n","<br>")
+            return HttpResponseServerError("Raised error:<br>"+err)
+        else:
+            return HttpResponseServerError("Server error in generator")
+
+
+
+
     return HttpResponseNotFound('Not Implemented')
 
 
