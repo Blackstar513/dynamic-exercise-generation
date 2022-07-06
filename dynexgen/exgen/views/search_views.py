@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.db.models import Q
 from ..forms.search_forms import ExerciseSearchForm, AssemblySearchForm
-from ..forms.select_forms import SelectExercisesForm
+#from ..forms.select_forms import SelectExercisesForm
 from ..models import Exercise, Assembly
 
 
