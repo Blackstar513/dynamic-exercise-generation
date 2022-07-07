@@ -13,7 +13,7 @@
 {% block title %}Search{% endblock %}
 
 {% block content %}
-<form style="overflow-y:auto;" method="GET">
+<form style="overflow-y:auto;" action="#results" method="GET">
     <div class="fieldWrapper">
         <label for="id_text" style="display: block;"><strong>{{ form.text.label }}:</strong></label>
         {{ form.text }}
@@ -50,8 +50,9 @@
 
 <hr>
 
-{% if form_select %}
+<a name="results"></a>
 
+{% if form_select %}
 <form action="{% url 'exgen:type_views' %}" method="POST">
     {% csrf_token %}
     <table>

@@ -13,7 +13,7 @@
 {% block title %}Search for Assemblies{% endblock %}
 
 {% block content %}
-<form style="overflow-y:auto;" method="GET">
+<form style="overflow-y:auto;" action="#results" method="GET">
     <table>
         <tr>
             <td class="fieldWrapper">
@@ -45,6 +45,8 @@
 </form>
 
 <hr>
+
+<a name="results"></a>
 
 {% for assembly in search_results %}
 <form>
