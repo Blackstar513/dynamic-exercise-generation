@@ -12,7 +12,7 @@ class SelectFileTypeForm(forms.Form):
                                   required=True)
 
     full_exercise = forms.BooleanField(label="use full exercises?", required=False)
-    exercises = forms.MultipleChoiceField(widget=forms.MultipleHiddenInput())
+    exercise = forms.MultipleChoiceField(widget=forms.MultipleHiddenInput())
     assembly = forms.ChoiceField(widget=forms.HiddenInput())
 
 
@@ -23,8 +23,8 @@ class SelectExercisesForm(forms.Form):
         for exercise in exercise_choices:
             categories = [str(c) for c in exercise.category.all()]
             choices.append((exercise.id, f"{exercise} | {exercise.creator} | {','.join(categories)}"))
-        self.fields['exercises'] = forms.MultipleChoiceField(label="Exercises", choices=tuple(choices),
-                                                             widget=FilteredSelectMultiple("Exercises", is_stacked=False),
-                                                             required=True)
+        self.fields['exercise'] = forms.MultipleChoiceField(label="Exercises", choices=tuple(choices),
+                                                            widget=FilteredSelectMultiple("Exercises", is_stacked=False),
+                                                            required=True)
 
 

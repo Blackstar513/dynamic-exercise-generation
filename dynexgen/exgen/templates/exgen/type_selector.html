@@ -4,7 +4,7 @@
 {% block content %}
 <html>
 
-<form action="{% url 'exgen:generator' %}" method="POST">
+<form action="{% url 'exgen:generator' %}" method="GET">
  {% csrf_token %}
  <table> 
  {{ form.as_table}}
