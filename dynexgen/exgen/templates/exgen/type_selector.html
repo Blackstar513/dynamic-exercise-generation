@@ -11,15 +11,14 @@
 {% block content %}
 
 
-<form style="display:flex; justify-content: center;" action="{% url 'exgen:generator' %}" method="POST">
- {% csrf_token %}
+<form style="display:flex; justify-content: center;" action="{% url 'exgen:generator' %}" method="GET">
  <table> 
  {{ form.as_table}}
  </table>
  <br>
 <div ontouchstart="">
   <div class="button">
-    <a onclick="this.closest('form').submit(); return false">Generate</a>
+    <a onclick="this.closest('form').submit(); return false" href="javascript:{}">Generate</a>
   </div>
 </div>
 </form>
