@@ -13,7 +13,7 @@ class SelectFileTypeForm(forms.Form):
 
     full_exercise = forms.BooleanField(label="use full exercises?", required=False)
     exercise = forms.MultipleChoiceField(widget=forms.MultipleHiddenInput())
-    assembly = forms.ChoiceField(widget=forms.HiddenInput())
+    assembly = forms.CharField(widget=forms.HiddenInput())
 
 
 class SelectExercisesForm(forms.Form):
@@ -26,5 +26,9 @@ class SelectExercisesForm(forms.Form):
         self.fields['exercise'] = forms.MultipleChoiceField(label="Exercises", choices=tuple(choices),
                                                             widget=FilteredSelectMultiple("Exercises", is_stacked=False),
                                                             required=True)
+
+
+class SingleAssemblyForm(forms.Form):
+    assembly = forms.CharField(widget=forms.HiddenInput())
 
 
