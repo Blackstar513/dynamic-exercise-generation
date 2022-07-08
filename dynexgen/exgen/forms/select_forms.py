@@ -5,10 +5,14 @@ from django.contrib.admin.widgets import FilteredSelectMultiple
 class SelectFileTypeForm(forms.Form):
 
     doctype = forms.ChoiceField(label="filetypes", choices=(('pdf', "PDF"),
-                                                             ('html', "HTML"),
-                                                             ('docx', "DOCX"),
-                                                             ('latex', "LATEX")),
-                                widget=forms.RadioSelect(), initial='pdf',
+                                                            ('pdf_present', "PDF as Presentation"),
+                                                            ('docx', "DOCX"),
+                                                            ('latex', "Latex"),
+                                                            ('beamer', "Beamer"),
+                                                            ('html', "HTML"),
+                                                            ('md', "MarkDown")),
+                                #widget=forms.RadioSelect(),
+                                initial='pdf',
                                 required=True)
 
     full_exercise = forms.BooleanField(label="use full exercises?", required=False)
