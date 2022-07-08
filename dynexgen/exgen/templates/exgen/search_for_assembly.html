@@ -49,7 +49,8 @@
 <a name="results"></a>
 
 {% for assembly in search_results %}
-<form>
+<form action="{% url 'exgen:type_views' %}" method="GET">
+    {{ form_select_list|index:forloop.counter0 }}
     <details>
         <summary><input type="Submit" value="{{ assembly.title }}"></summary>
         <p>
@@ -62,7 +63,7 @@
             Exercises:<br>
             <ol>
             {% for ex_as in assembly.exercise_assemblies.all|dictsort:'rank' %}
-                <li value="{{ ex_as.rank }}"><a href="{% url 'exgen:top_down' ex_as.exercise.id %}">{{ ex_as.exercise }}</a></li>
+                <li value="{{ ex_as.rank }}">{{ ex_as.exercise }}</a></li>
             {% endfor %}
             </ol>
         </div>

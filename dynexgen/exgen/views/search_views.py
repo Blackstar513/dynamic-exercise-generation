@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.db.models import Q
 from ..forms.search_forms import ExerciseSearchForm, AssemblySearchForm
-from ..forms.select_forms import SelectExercisesForm
+from ..forms.select_forms import SelectExercisesForm, SingleAssemblyForm
 from ..models import Exercise, Assembly
 
 
@@ -77,9 +77,12 @@ def search_for_assemblies(request):
             search_results = Assembly.objects.filter(*query_list)
 
         form = AssemblySearchForm(request.GET)
+        form_select_list = [SingleAssemblyForm(initial={'assembly': assembly.id}) for assembly in search_results]
     else:
         form = AssemblySearchForm()
+        form_select_list = None
 
     return render(request, 'exgen/search_for_assembly.html',
                   {'search_results': search_results,
-                   'form': form})
+                   'form': form,
+                   'form_select_list': form_select_list})
