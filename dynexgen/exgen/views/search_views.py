@@ -60,7 +60,7 @@ def search_for_assemblies(request):
 
         category_include_all = request.GET.get('category_connect') == 'all'
 
-        query_list = [Q(title__icontains=title), Q(published=False)]
+        query_list = [Q(title__icontains=title), Q(published=True)]
         if lecturers:
             query_list.append(Q(creator__pk__in=lecturers))
 
