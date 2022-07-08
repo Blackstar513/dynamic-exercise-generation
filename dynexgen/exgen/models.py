@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth import get_user_model
 from django.core.files.base import ContentFile
+from os import path
 
 User = get_user_model()
 
@@ -222,8 +223,8 @@ class ExercisePicture(models.Model):
 
     def duplicate(self, exercise):
         new_ex_pic = ExercisePicture()
-        # TODO: only take real picture name not folder
-        new_ex_pic.image = ContentFile(self.image.read(), self.image.name)
+        _, filename = path.split(self.image.name)
+        new_ex_pic.image = ContentFile(self.image.read(), filename)
         new_ex_pic.text = self.text
         new_ex_pic.exercise = exercise
 
@@ -243,8 +244,8 @@ class AnswerPicture(models.Model):
 
     def duplicate(self, answer):
         new_ans_pic = AnswerPicture()
-        # TODO: only take real picture name not folder
-        new_ans_pic.image = ContentFile(self.image.read(), self.image.name)
+        _, filename = path.split(self.image.name)
+        new_ans_pic.image = ContentFile(self.image.read(), filename)
         new_ans_pic.text = self.text
         new_ans_pic.answer = answer
 
