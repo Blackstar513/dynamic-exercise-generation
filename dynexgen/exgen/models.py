@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth import get_user_model
+from django.core.files.base import ContentFile
 
 User = get_user_model()
 
@@ -149,6 +150,31 @@ class Exercise(models.Model):
         # ensure that no even children doubling exists (as long as there is no weird exercise setup)
         return list(dict.fromkeys(tuple(children)))
 
+    def duplicate(self, creator):
+        new_ex = Exercise.objects.create()
+        new_ex.title = self.title
+        new_ex.text = self.text
+        new_ex.text_type = self.text_type
+        new_ex.comment = self.comment
+        new_ex.creator = creator
+
+        for answer in self.answers.all():
+            answer.duplicate(self)
+
+        for pic in self.pictures.all():
+            pic.duplicate(new_ex)
+
+        for cat in self.category.all():
+            new_ex.category.add(cat)
+
+        for dependency in self.parents.all():
+            new_child = dependency.child.duplicate(creator)
+            new_child.dependency.add(new_ex, through_defaults={'hierarchy': dependency.hierarchy})
+            new_child.save()
+
+        new_ex.save()
+        return new_ex
+
     def get_absolute_url(self):
         from django.urls import reverse
         return reverse('exgen:answer_bottom_up', kwargs={'pk': self.pk})
@@ -170,6 +196,21 @@ class Answer(models.Model):
 
     exercise = models.ForeignKey(Exercise, related_name='answers', on_delete=models.CASCADE, verbose_name='Lösung')
 
+    def duplicate(self, exercise):
+        new_answer = Answer()
+        new_answer.text = self.text
+        new_answer.text_type = self.text_type
+
+        for pic in self.pictures.all():
+            pic.duplicate(new_answer)
+
+        new_answer.exercise = exercise
+
+        exercise.save()
+        new_answer.save()
+
+        return new_answer
+
     def __str__(self):
         return f"{self.text[:20]}..."
 
@@ -179,6 +220,18 @@ class ExercisePicture(models.Model):
     text = models.TextField(verbose_name="Bildbeschreibung")
     exercise = models.ForeignKey(Exercise, related_name='pictures', on_delete=models.CASCADE, verbose_name="Aufgabe")
 
+    def duplicate(self, exercise):
+        new_ex_pic = ExercisePicture()
+        # TODO: only take real picture name not folder
+        new_ex_pic.image = ContentFile(self.image.read(), self.image.name)
+        new_ex_pic.text = self.text
+        new_ex_pic.exercise = exercise
+
+        exercise.save()
+        new_ex_pic.save()
+
+        return new_ex_pic
+
     def __str__(self):
         return f"{self.image}"
 
@@ -187,6 +240,18 @@ class AnswerPicture(models.Model):
     image = models.ImageField(upload_to='answer_images/', verbose_name="Image", max_length=200)
     text = models.TextField(verbose_name="Bildbeschreibung")
     answer = models.ForeignKey(Answer, related_name='pictures', on_delete=models.CASCADE, verbose_name="Lösung")
+
+    def duplicate(self, answer):
+        new_ans_pic = AnswerPicture()
+        # TODO: only take real picture name not folder
+        new_ans_pic.image = ContentFile(self.image.read(), self.image.name)
+        new_ans_pic.text = self.text
+        new_ans_pic.answer = answer
+
+        answer.save()
+        new_ans_pic.save()
+
+        return new_ans_pic
 
     def __str__(self):
         return f"{self.image}"
@@ -210,6 +275,19 @@ class Assembly(models.Model):
                                 verbose_name="Creator")
     exercise = models.ManyToManyField('Exercise', through='ExerciseAssembly', verbose_name="Exercises")
     category = models.ManyToManyField('Category', through='AssemblyCategory', verbose_name="Categories")
+
+    def duplicate(self, creator):
+        new_assembly = Assembly.objects.create()
+        new_assembly.creator = creator
+        new_assembly.title = self.title
+
+        for ex in self.exercise_assemblies.all():
+            new_assembly.exercise.add(ex.exercise, through_defaults={'rank': ex.rank})
+
+        for cat in self.category.all():
+            new_assembly.category.add(cat)
+
+        new_assembly.save()
 
     def get_absolute_url(self):
         from django.urls import reverse
