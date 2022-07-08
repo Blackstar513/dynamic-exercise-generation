@@ -5,7 +5,7 @@ from . import views
 app_name = 'exgen'
 
 urlpatterns = [
-    path('', views.index, name='index'),
+    path('', views.home, name='home'),
     path('<int:pk>/exercise', views.ExerciseBottomUpView.as_view(), name='bottom_up'),
     path('<int:pk>/exercise_root', views.ExerciseTopDownView.as_view(), name='top_down'),
     path('<int:pk>/exercise_answers', views.ExerciseAnswerBottomUpView.as_view(), name='answer_bottom_up'),

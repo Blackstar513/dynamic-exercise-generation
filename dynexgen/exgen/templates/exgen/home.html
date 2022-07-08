@@ -1,0 +1,11 @@
+{% extends "exgen/base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+This website allows you to generate exercise files from existing exercises.
+<br>
+Go to <a href="{% url 'exgen:exercise_search' %}">Search for Exercises</a> to search for exercises you want to assemble.
+<br>
+Go to <a href="{% url 'exgen:assembly_search' %}">Search for Assemblies</a> to download pre-assembled exercises.
+{% endblock %}

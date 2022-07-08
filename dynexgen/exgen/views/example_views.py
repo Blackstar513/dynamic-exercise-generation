@@ -5,8 +5,8 @@ from django.http import HttpResponse
 from ..models import Exercise, ExerciseDependency
 
 
-def index(request):
-    return HttpResponse("HELLO WORLD!")
+def home(request):
+    return render(request, 'exgen/home.html')
 
 
 class ExerciseBottomUpView(generic.ListView):
