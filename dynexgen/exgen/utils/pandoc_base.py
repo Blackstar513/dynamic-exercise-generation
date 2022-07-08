@@ -39,7 +39,7 @@ def assert_tool(command):
     return function_identity_or_assertion_error
 
 
-@assert_tool("pandoc")
+#@assert_tool("pandoc")
 def pandoc_default(doctype,tempdir):
     if not doctype in "docx pptx".split():
         return run_and_get_lines("pandoc","-D",doctype)
@@ -57,7 +57,7 @@ def cd_tmpdir():
     finally:
         os.chdir(owd)
 
-@assert_tool("pdflatex")
+#@assert_tool("pdflatex")
 def pdflatex_convert(infile_data):
     with cd_tmpdir() as tmpdir:
         with open("tmp.tex",'w+') as f:
