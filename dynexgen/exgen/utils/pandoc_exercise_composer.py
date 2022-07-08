@@ -5,6 +5,7 @@ from ..models import Exercise, Answer
 _pdf_base = r"""
 \documentclass[a4paper]{scrartcl}
 \usepackage{graphicx}
+\usepackage{longtable}
 \title{\textbf{TITLE}}
 \subtitle{SUBTITLE}
 \begin{document}
@@ -15,6 +16,7 @@ CONTENT
 _beamer_base = r"""
 \documentclass{beamer}
 \usepackage{graphicx}
+\usepackage{longtable}
 %\usetheme[fb2]{FrankfurtUniversity}
 \title{TITLE}
 \begin{document}
