@@ -133,7 +133,7 @@ class ExerciseAdmin(nested_admin.NestedModelAdmin):
     search_fields = ('title', 'text', 'creator__last_name__startswith', 'text_type__startswith')
     search_help_text = "Searches anywhere in titles and text;\nSearches if creator or texttype start with the query"
 
-    actions = (make_published, 'make_published_with_dependent', 'make_unpublished_with_dependent', make_clone, 'make_assembly')
+    actions = ('delete_exercise_with_children', make_published, 'make_published_with_dependent', 'make_unpublished_with_dependent', make_clone, 'make_assembly')
 
     save_as = True  # overwrites "save and add another" with "save as new" -> allows cloning of exercises
 
@@ -178,15 +178,20 @@ class ExerciseAdmin(nested_admin.NestedModelAdmin):
             assembly.save()
             return HttpResponseRedirect(f'/admin/exgen/assembly/{assembly.id}/change/')
 
-    @admin.action(description='Mark selected exercises and their children as published')
+    @admin.action(description="Mark selected exercises and their children as published")
     def make_published_with_dependent(self, request, queryset):
         for q in queryset:
             self._publish_recursively(q.get_all_child_dependencies(), True)
 
-    @admin.action(description='Mark selected exercises and their children as unpublished')
+    @admin.action(description="Mark selected exercises and their children as unpublished")
     def make_unpublished_with_dependent(self, request, queryset):
         for q in queryset:
             self._publish_recursively(q.get_all_child_dependencies(), False)
+
+    @admin.action(description="Delete exercise together with all children")
+    def delete_exercise_with_children(self, request, queryset):
+        for q in queryset:
+            self._delete_children_recursively(q.get_all_child_dependencies())
 
     def _publish_recursively(self, exercises, publish: bool):
         if isinstance(exercises, tuple) or isinstance(exercises, list):
@@ -195,6 +200,13 @@ class ExerciseAdmin(nested_admin.NestedModelAdmin):
         else:
             exercises.published = publish
             exercises.save()
+
+    def _delete_children_recursively(self, exercises):
+        if isinstance(exercises, tuple) or isinstance(exercises, list):
+            for e in exercises:
+                self._delete_children_recursively(e)
+        else:
+            exercises.delete()
 
     def save_model(self, request, obj, form, change):
         if not obj.creator:
