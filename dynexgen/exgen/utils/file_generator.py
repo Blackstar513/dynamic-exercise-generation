@@ -3,6 +3,7 @@ from traceback import print_exception
 import pandoc
 from .pandoc_exercise_composer import latex_from_fragments
 from django.core.exceptions import TooManyFieldsSent, BadRequest
+from datetime import datetime
 
 
 from ..models import Exercise, Assembly
@@ -14,12 +15,14 @@ class FragmentCollection:
         self.tree = []
         self.configuration = {
                 "nest_down":False,
-                "answers":False,
+                "include_answers":False,
                 }
         for key, default_value in self.configuration.items():
-            self.configuration[key] = configuration.get(key,default_value)
+            self.configuration[key] = bool(configuration.get(key,default_value))
     def add(self, exercise):
         self.tree += exercise.get_all_parent_dependencies_correctly_nested()
+        if self.configuration["include_answers"]:
+            self.tree += list(exercise.answers.all())
 
 
 def gather_assemblies(assembly_ids, configuration):
@@ -37,7 +40,7 @@ def gather_assemblies(assembly_ids, configuration):
 
 def gather_exercises(exercise_ids, configuration):
     fragment_collection = FragmentCollection(configuration)
-    fragment_collection.title = "Exercise Collection"
+    fragment_collection.title = "Exgen "+str(datetime.now())[:-10]
     for exid in exercise_ids:
         fragment_collection.add(Exercise.objects.get(pk=exid))
     return fragment_collection
@@ -64,7 +67,7 @@ def gather_fragments(configuration):
 
 def generate_file(configuration):
     fragment_collection = gather_fragments(configuration)
-    pandoc_data = latex_from_fragments(fragment_collection)
+    pandoc_data = latex_from_fragments(fragment_collection,configuration)
     target_doc = pandoc.write(pandoc_data,format=configuration["doctype"])
 
     return target_doc
