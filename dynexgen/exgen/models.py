@@ -162,7 +162,7 @@ class Exercise(models.Model):
         new_ex.creator = creator
 
         for answer in self.answers.all():
-            answer.duplicate(self)
+            answer.duplicate(new_ex)
 
         for pic in self.pictures.all():
             pic.duplicate(new_ex)
