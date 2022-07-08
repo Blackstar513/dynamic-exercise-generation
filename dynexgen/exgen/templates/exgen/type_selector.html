@@ -1,16 +1,27 @@
 {% extends "exgen/base.html" %}
+
+{% load static %}
+
+{% block head_append %}
+<link href="{% static 'exgen/css/button.css' %} " rel="stylesheet" type="text/css"/>
+{% endblock %}
+
 {% block title %}Type Selector{% endblock %}
 
 {% block content %}
-<html>
 
-<form action="{% url 'exgen:generator' %}" method="GET">
+
+<form style="display:flex; justify-content: center;" action="{% url 'exgen:generator' %}" method="POST">
+ {% csrf_token %}
  <table> 
  {{ form.as_table}}
  </table>
-  <div><button type="submit">Generate</button></div>
+ <br>
+<div ontouchstart="">
+  <div class="button">
+    <a onclick="this.closest('form').submit(); return false">Generate</a>
+  </div>
+</div>
 </form>
 <br>
-</html>
 {% endblock %}
-
