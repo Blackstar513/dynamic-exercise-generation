@@ -1,6 +1,7 @@
 from traceback import print_exception, format_exception
 
 from django.utils.datastructures import MultiValueDictKeyError
+from django.core.exceptions import BadRequest
 from django.conf import settings as django_settings
 from django.http import (
         HttpResponse,
@@ -45,6 +46,9 @@ def converted_file_response_view(request):
         msg = f"Needs {parameter} as query parameter."
         msg += f"Please append an appropriate &{parameter}= to url"
         return HttpResponseBadRequest(msg)
+
+    except BadRequest as e:
+        return HttpResponseBadRequest(e)
 
     except Exception as e:
         print_exception(e)

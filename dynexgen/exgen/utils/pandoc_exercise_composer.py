@@ -91,6 +91,7 @@ def enumerate_flatlist(flatlist):
         l.append( (d,e,numbers[-1]) )
     return l
 
+
 def parse_exercise_tree_latex(exercise_tree, options={}):
     print(f"{options=}")
     flatlist = flatten_exercise_tree(exercise_tree)
@@ -108,6 +109,22 @@ def parse_exercise_tree_latex(exercise_tree, options={}):
     return pandoc_document
 
 
+
+def latex_from_fragments(fragment_collection, options={}):
+    print(f"{options=}")
+    flatlist = flatten_exercise_tree(fragment_collection.tree)
+    flatlist = enumerate_flatlist(flatlist)
+
+    content = [task_fragment(*x, options) for x in flatlist]
+    title = fragment_collection.title
+    
+    base = _pdf_base if not options.get("subtype","") == "beamer" else _beamer_base
+    tex_document = base.replace("CONTENT","\n".join(content)).replace("TITLE",title,1)
+    print("---LaTeX---")
+    print(tex_document)
+    print("---LaTeX---")
+    pandoc_document = pandoc.read(tex_document,format="latex")
+    return pandoc_document
 
 
 
