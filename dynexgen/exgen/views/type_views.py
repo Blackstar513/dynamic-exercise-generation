@@ -6,9 +6,8 @@ from ..models import Exercise
 
 # Create your views here.
 def type_views(request):
-  
-  # render function takes argument - request
-  # and return HTML as response
+    # render function takes argument - request
+    # and return HTML as response
     return render(request, "exgen/type_selector.html",
                   {"form": SelectFileTypeForm(initial={'exercise': request.GET.getlist('exercise'),
-                                                       'assembly': request.GET.get('assembly')})})
+                                                       'assembly': request.GET.getlist('assembly')})})

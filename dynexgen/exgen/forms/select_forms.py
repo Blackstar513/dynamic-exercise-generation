@@ -13,7 +13,7 @@ class SelectFileTypeForm(forms.Form):
 
     full_exercise = forms.BooleanField(label="use full exercises?", required=False)
     exercise = forms.MultipleChoiceField(widget=forms.MultipleHiddenInput())
-    assembly = forms.CharField(widget=forms.HiddenInput())
+    assembly = forms.MultipleChoiceField(widget=forms.MultipleHiddenInput())
 
 
 class SelectExercisesForm(forms.Form):
