@@ -1,4 +1,5 @@
 from django.db import models
+from django.dispatch import receiver
 from django.contrib.auth import get_user_model
 from django.core.files.base import ContentFile
 from os import path
@@ -15,6 +16,7 @@ TEXT_TYPE_CHOICES = [
 ]
 
 
+# MANAGER
 class ExerciseIsRootManager(models.Manager):
     def get_queryset(self):
         return super().get_queryset().filter(children__isnull=True)
@@ -342,3 +344,18 @@ class AssemblyCourses(models.Model):
     course = models.ForeignKey(Course, related_name='assembly_courses', on_delete=models.CASCADE, verbose_name="Course")
     assembly = models.ForeignKey(Assembly, related_name='course_assemblies', on_delete=models.CASCADE,
                                  verbose_name="Assembly")
+
+
+# SIGNALS
+# delete ExercisePicture file
+@receiver(models.signals.post_delete, sender=ExercisePicture)
+def delete_file(sender, instance, *args, **kwargs):
+    if instance.image:
+        instance.image.delete(save=False)
+
+
+# delete AnswerPicture file
+@receiver(models.signals.post_delete, sender=AnswerPicture)
+def delete_file(sender, instance, *args, **kwargs):
+    if instance.image:
+        instance.image.delete(save=False)
