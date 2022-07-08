@@ -8,10 +8,11 @@ class SelectFileTypeForm(forms.Form):
                                                              ('html', "HTML"),
                                                              ('docx', "DOCX"),
                                                              ('latex', "LATEX")),
-                                  widget=forms.RadioSelect(), initial='pdf',
-                                  required=True)
+                                widget=forms.RadioSelect(), initial='pdf',
+                                required=True)
 
     full_exercise = forms.BooleanField(label="use full exercises?", required=False)
+    include_answers = forms.BooleanField(label="include answers?", required=False)
     exercise = forms.MultipleChoiceField(widget=forms.MultipleHiddenInput())
     assembly = forms.MultipleChoiceField(widget=forms.MultipleHiddenInput())
 
