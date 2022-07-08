@@ -12,7 +12,6 @@ from django.http import (
 
 
 #from ..models import Exercise, ExerciseDependency
-#from ..utils.pandoc_base import exercise_as_file
 from ..utils.file_generator import generate_file
 
 

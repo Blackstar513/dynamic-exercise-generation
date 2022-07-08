@@ -2,6 +2,7 @@ from traceback import print_exception
 
 import pandoc
 from .pandoc_exercise_composer import latex_from_fragments
+from .pandoc_base import document_from_latex
 from django.core.exceptions import TooManyFieldsSent, BadRequest
 from datetime import datetime
 
@@ -67,8 +68,10 @@ def gather_fragments(configuration):
 
 def generate_file(configuration):
     fragment_collection = gather_fragments(configuration)
-    pandoc_data = latex_from_fragments(fragment_collection,configuration)
-    target_doc = pandoc.write(pandoc_data,format=configuration["doctype"])
+    tex_data = latex_from_fragments(fragment_collection,configuration)
+
+    #target_doc = pandoc.write(pandoc_data,format=configuration["doctype"])
+    target_doc = document_from_latex(tex_data,configuration["doctype"])
 
     return target_doc
 

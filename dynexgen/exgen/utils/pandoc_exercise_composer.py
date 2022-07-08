@@ -4,6 +4,7 @@ from ..models import Exercise, Answer
 
 _pdf_base = r"""
 \documentclass[a4paper]{scrartcl}
+\usepackage{graphicx}
 \title{\textbf{TITLE}}
 \subtitle{SUBTITLE}
 \begin{document}
@@ -13,6 +14,7 @@ CONTENT
 
 _beamer_base = r"""
 \documentclass{beamer}
+\usepackage{graphicx}
 %\usetheme[fb2]{FrankfurtUniversity}
 \title{TITLE}
 \begin{document}
@@ -94,7 +96,7 @@ def exercise_fragment(depth, exercise, number, options=None):
     images = list(exercise.pictures.iterator())
     if images:
         for image in images:
-            exercise_latex += f"\\\\\includegraphics{{{image.image.path}}}\n"
+            exercise_latex += f"\\\\\includegraphics[width=\\textwidth]{{{image.image.path}}}\n"
 
     content = section_header + "\n" + exercise_latex
 
@@ -110,10 +112,8 @@ def answers_fragment(depth, fragment, number, options = None):
 
     section_header = r"\section*{Answer}"
 
-    images = list(fragment.pictures.iterator())
-    if images:
-        for image in images:
-            fragment_latex += f"\\\\\includegraphics{{{image.image.path}}}\n"
+    for image in fragment.pictures.iterator():
+        fragment_latex += f"\\\\\includegraphics{{{image.image.path}}}\n"
 
     content = section_header + "\n" + fragment_latex
 
@@ -146,8 +146,8 @@ def latex_from_fragments(fragment_collection, options={}):
     print("---LaTeX---")
     print(tex_document)
     print("---LaTeX---")
-    pandoc_document = pandoc.read(tex_document,format="latex")
-    return pandoc_document
+    return tex_document
+
 
 
 

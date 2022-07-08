@@ -1,8 +1,11 @@
 import subprocess, sys, os, tempfile
 from traceback import print_exception
+from contextlib import contextmanager
 
 import pandoc
-from .pandoc_exercise_composer import parse_exercise_tree
+#from .pandoc_exercise_composer import parse_exercise_tree
+
+from tempfile import TemporaryDirectory
 
 ########
 # Pandoc External
@@ -26,22 +29,56 @@ def assert_tool(command):
     def tool_not_found_function(*args,**kwargs):
         print(f'tool {name} not found using `which` - assuming no installation',
                 file=sys.stderr)
-        raise AssertionError(name)
+        raise AssertionError(command)
 
     def function_identity_or_assertion_error(function):
-        if not run_and_test_success('which',name):
+        if not run_and_test_success('which',command):
             return tool_not_found_function
         return function
     
     return function_identity_or_assertion_error
 
 
+@assert_tool("pandoc")
 def pandoc_default(doctype,tempdir):
     if not doctype in "docx pptx".split():
         return run_and_get_lines("pandoc","-D",doctype)
     else:
         # TODO capture output file
         return ...
+
+@contextmanager
+def cd_tmpdir():
+    owd = os.getcwd()
+    try:
+        with TemporaryDirectory() as tmpdir:
+            os.chdir(tmpdir)
+            yield tmpdir
+    finally:
+        os.chdir(owd)
+
+@assert_tool("pdflatex")
+def pdflatex_convert(infile_data):
+    with cd_tmpdir() as tmpdir:
+        with open("tmp.tex",'w+') as f:
+            f.write(infile_data)
+        command_output = run_and_get_lines(
+            "pdflatex","-interaction=nonstopmode","","tmp.tex"
+            )
+        #print("vvvv infile vvvv")
+        #print(infile_data)
+        #print("=== vv pdflatex vv ===")
+        #print("\n".join(commandoutput))
+        #print("=== ^^ pdflatex ^^ ===")
+        #print(os.listdir())
+        try:
+            with open("texput.log") as f:
+                print(f.read())
+        except Exception as e:
+            pass # I don't care. It's only relevant if it failed
+        with open("tmp.pdf","rb") as f:
+            return f.read()
+
 
 # pandoc --reference-doc=REFERENCE_PATH -o OUTFILE INFILE
 
@@ -52,19 +89,6 @@ def pandoc_default(doctype,tempdir):
 
 #pd_formats = "latex pptx docx revealjs html pdf markdown".split()
 pd_formats = "latex docx pptx markdown".split()
-
-document_raw="""
-# Hello World
-
-## Subheading
-
-$\sum\limits_{i=1}^{\infty} \\frac{1}{x^2}$
-
-Text
-
-- List
-- More lists
-"""
 
 refdoc = lambda doc: [f"--reference-doc=templates/{doc}"]
 tpldoc = lambda doc: [f"--template=templates/{doc}"]
@@ -86,26 +110,11 @@ def target(doc, doctype):
     #return pandoc.write(doc,format=doctype,options=template_option_dict[doctype])
     return pandoc.write(doc, format=doctype)
 
-
-def exercise_as_file(exercise,tempdir,configuration):
-    try:
-        pandoc_data = parse_exercise_tree(exercise,options=configuration)
-    except Exception as e:
-        err= "Error on document parsing: "+str(e)
-        print_exception(e)
-        print(e)
-        return err
-    try:
-        #pandoc_data = pandoc.read("hallo",format="markdown")
-        #print(pandoc_data)
-        target_doc = pandoc.write(pandoc_data,format=configuration["doctype"])
-    except Exception as e:
-        err = "Error on document writing:"+str(e)
-        print_exception(e)
-        return err
-
+def document_from_latex(latex_infile, doctype):
+    if doctype == "pdf":
+        target_doc = pdflatex_convert(latex_infile)
+    else:
+        pandoc_document = pandoc.read(tex_document,format="latex")
+        target_doc = pandoc.write(pandoc_data,format=doctype)
     return target_doc
-
-
-
 
