@@ -54,7 +54,6 @@
 
 {% if form_select %}
 <form action="{% url 'exgen:type_views' %}" method="GET">
-    {% csrf_token %}
     <table>
         <td>
              <label for="id_lecturers" style="display: block;"><strong>{{ form_select.exercise.label }}:</strong></label>
