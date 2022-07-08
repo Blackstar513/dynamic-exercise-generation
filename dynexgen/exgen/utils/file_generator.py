@@ -44,8 +44,8 @@ def gather_exercises(exercise_ids, configuration):
 
 
 def gather_fragments(configuration):
-    exercise_ids = configuration.getlist("exercise")
-    assembly_ids = configuration.getlist("assembly")
+    exercise_ids = [i for i in configuration.getlist("exercise") if i]
+    assembly_ids = [i for i in configuration.getlist("assembly") if i]
     if bool(exercise_ids) and bool(assembly_ids):
         raise TooManyFieldsSent(
                 "exercises: "+str(exercise_ids)+
