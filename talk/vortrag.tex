@@ -1,0 +1,89 @@
+%\documentclass[english]{beamer}
+\documentclass[english,hangout]{beamer}
+%\documentclass[aspectratio=169]{beamer}
+%\usepackage{amsmath}
+%\usepackage{amssymb}
+\usepackage{rotating}
+\usepackage{verbatim}
+\usepackage{latexsym}
+\usepackage{graphicx}
+\usepackage{tabularx}
+\usepackage{ragged2e}
+\usepackage{eurosym}   % Euro symbol: \euro
+\usepackage{listings}
+\usepackage{multirow}
+\usepackage{colortbl}
+\usepackage{textcomp}  % many special symbols
+\usepackage{lmodern}
+\usepackage{times}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{booktabs}
+
+
+\usetheme[fb2]{FrankfurtUniversity}
+%\usetheme[fb2,noslogan]{FrankfurtUniversity}
+%\slogan{\large\color{red}UNAUTHORIZED}
+
+
+\title{Dynamic Exercise Generation}
+\subtitle{}
+\author{\
+  \href{mailto:malte.koch@stud.fra-uas.de}{Malte Koch} /
+  \href{mailto:cyriax.brast@stud.fra-uas.de}{Jonathan Cyriax Brast} /
+  \href{mailto:ooya.aliyarzadeh@gmail.com}{Pooya Aliyarzadeh}
+}
+\institute{Frankfurt University of Applied Sciences\\
+           Faculty of Computer Science and Engineering}
+\date{2022-07-13}
+
+
+\begin{document}
+
+
+\begin{frame}
+\titlepage
+\end{frame}
+%\addtocounter{framenumber}{-1}
+
+\begin{frame}{Django}
+\begin{itemize}
+ \item Python Webframework
+ \item Beinhaltet viele Features die die Entwicklung einfacher machen
+ \item Basiert auf dem DRY-Prinzip
+ \item Explizite Urlkonfiguration
+ \item Bekannte Seiten\footnotemark: Mozilla, Spotify, Pinterest, Instagram
+\end{itemize}
+\footnotetext{Quelle: \href{https://www.djangoproject.com/start/overview/}{https://www.djangoproject.com/start/overview/}}
+\end{frame}
+
+\begin{frame}{Django Vorteile}
+\begin{itemize}
+ \item Definition der Datenbank in Python
+ \item Versionierbare Datenbankänderungen (Migrations)
+ \item Einfaches füllen der Datenbank mit Fixtures
+ \item Datenbankobjekte und -queries können wie Pythonobjekte behandelt werden
+ \item Automatische Generierung von Formularen aus Datenbankeinträgen
+ \item Einfache Einbindung von Formularen in HTML
+ \item HTML Vererbung
+ \item IF-bedingungen, For-Schleifen, Filter und weitere Features in HTML
+ \item Interne URL-Auflösung anhand von Namen
+ \item Anpassbare Admin Seite
+ \item Einfaches Nutzersystem
+ \item Andere Django Apps mit gewünschten Features können hinzugefügt werden
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Django Nachteile}
+\begin{itemize}
+ \item Kein einfacher Zugriff auf das HTML-Template der Adminseite
+ \item Pythonkenntnisse nötig
+ \item Auf den ersten Blick unübersichtlich/hohe Einstiegshürde
+\end{itemize}
+\end{frame}
+
+
+
+
+\end{document}
