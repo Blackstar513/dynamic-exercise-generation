@@ -22,7 +22,10 @@ class ExerciseSearchForm(forms.Form):
     lecturers = FullUserNameModelMultipleChoiceField(label="Lecturers", queryset=User.objects.all(),
                                                      widget=FilteredSelectMultiple("Lecturers", is_stacked=False),
                                                      required=False)
-    only_root = forms.BooleanField(label="Search only for root exercises?", required=False)
+    courses = forms.ModelMultipleChoiceField(label="Courses", queryset=Course.objects.all(),
+                                             widget=FilteredSelectMultiple("Courses", is_stacked=False),
+                                             required=False)
+    only_root = forms.BooleanField(label="Search only for root exercises?", initial=True, required=False)
 
 
 class AssemblySearchForm(forms.Form):
@@ -36,4 +39,7 @@ class AssemblySearchForm(forms.Form):
     lecturers = FullUserNameModelMultipleChoiceField(label="Lecturers", queryset=User.objects.all(),
                                                      widget=FilteredSelectMultiple("Lecturers", is_stacked=False),
                                                      required=False)
+    courses = forms.ModelMultipleChoiceField(label="Courses", queryset=Course.objects.all(),
+                                             widget=FilteredSelectMultiple("Courses", is_stacked=False),
+                                             required=False)
 

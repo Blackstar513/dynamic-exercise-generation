@@ -7,12 +7,13 @@ from ..models import Exercise, Assembly
 
 def search_for_exercises(request):
     search_results = None
-    if request.GET.get('text') or request.GET.get('categories') or request.GET.get('lecturers'):
+    if request.GET.get('text') or request.GET.get('categories') or request.GET.get('lecturers') or request.GET.get('courses'):
         text = request.GET.get('text')
         text = text if text is not None else ""
 
         categories = request.GET.getlist('categories')
         lecturers = request.GET.getlist('lecturers')
+        courses = request.GET.getlist('courses')
 
         category_include_all = request.GET.get('category_connect') == 'all'
 
@@ -24,6 +25,8 @@ def search_for_exercises(request):
         query_list = [Q(text__icontains=text), Q(published=True)]
         if lecturers:
             query_list.append(Q(creator__pk__in=lecturers))
+        if courses:
+            query_list.append(Q(course_exercises__pk__in=courses))
 
         if categories:
             if category_include_all:
@@ -51,18 +54,21 @@ def search_for_exercises(request):
 
 def search_for_assemblies(request):
     search_results = None
-    if request.GET.get('title') or request.GET.get('categories') or request.GET.get('lecturers'):
+    if request.GET.get('title') or request.GET.get('categories') or request.GET.get('lecturers') or request.GET.get('courses'):
         title = request.GET.get('title')
         title = title if title is not None else ""
 
         categories = request.GET.getlist('categories')
         lecturers = request.GET.getlist('lecturers')
+        courses = request.GET.getlist('courses')
 
         category_include_all = request.GET.get('category_connect') == 'all'
 
         query_list = [Q(title__icontains=title), Q(published=True)]
         if lecturers:
             query_list.append(Q(creator__pk__in=lecturers))
+        if courses:
+            query_list.append(Q(course_assemblies__pk__in=courses))
 
         if categories:
             if category_include_all:
