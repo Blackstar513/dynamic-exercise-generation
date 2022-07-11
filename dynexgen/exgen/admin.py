@@ -126,7 +126,7 @@ class AssemblyCategoryInline(admin.TabularInline):
 
 # Custom admin forms
 class ExerciseAdmin(nested_admin.NestedModelAdmin):
-    list_display = ('__str__', 'creator', 'category_list', 'text_type', 'short_comment', 'date_modified', 'published')
+    list_display = ('exercise_title', 'creator', 'category_list', 'text_type', 'short_comment', 'date_modified', 'published')
     #list_display_links = list_display
     list_filter = ('creator', 'published', 'text_type', ('date_modified', admin.DateFieldListFilter), ('children', IsRootFilter), 'category')
 
@@ -144,6 +144,10 @@ class ExerciseAdmin(nested_admin.NestedModelAdmin):
     inlines = [ExerciseInline, AnswerInline, ExercisePictureInline, ExerciseCategoryInline, CourseInline]
 
     save_as = True
+
+    @admin.display(description="exercise", ordering='title')
+    def exercise_title(self, obj):
+        return str(obj)
 
     @admin.display(description="comment", ordering='comment')
     def short_comment(self, obj):
