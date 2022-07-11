@@ -3,7 +3,7 @@ from django.utils.html import format_html
 from django.contrib import admin, messages
 from django.contrib.auth import get_user_model
 from .models import Exercise, Answer, Category, Course, ExercisePicture, AnswerPicture, ExerciseDependency, \
-    CourseExercise, CourseCategory, ExerciseCategory, Assembly, ExerciseAssembly, AssemblyCategory
+    CourseExercise, CourseCategory, ExerciseCategory, Assembly, ExerciseAssembly, AssemblyCategory, AssemblyCourses
 from django.utils.translation import gettext_lazy as _
 from django.http import HttpResponseRedirect
 from datetime import datetime
@@ -112,7 +112,7 @@ class AnswerInline(nested_admin.NestedTabularInline):
     inlines = [AnswerPictureInline]
 
 
-class CourseInline(admin.TabularInline):
+class ExerciseCourseInline(admin.TabularInline):
     model = CourseExercise
     extra = 0
     classes = ['collapse']
@@ -155,6 +155,12 @@ class AssemblyCategoryInline(admin.TabularInline):
         return formset
 
 
+class AssemblyCourseInline(admin.TabularInline):
+    model = AssemblyCourses
+    extra = 0
+    classes = ['collapse']
+
+
 # Custom admin forms
 class ExerciseAdmin(nested_admin.NestedModelAdmin):
     list_display = ('exercise_title', creator_name, 'category_list', 'text_type', 'short_comment', 'date_modified', 'published')
@@ -172,7 +178,7 @@ class ExerciseAdmin(nested_admin.NestedModelAdmin):
                               'classes': ['collapse']}),
         ('Published?', {'fields': ['published']}),
     ]
-    inlines = [ExerciseInline, AnswerInline, ExercisePictureInline, ExerciseCategoryInline, CourseInline]
+    inlines = [ExerciseInline, AnswerInline, ExercisePictureInline, ExerciseCategoryInline, ExerciseCourseInline]
 
     save_as = True
 
@@ -280,7 +286,7 @@ class AssemblyAdmin(admin.ModelAdmin):
         (None, {'fields': ['title']}),
         ('Published?', {'fields': ['published']}),
     ]
-    inlines = [ExerciseAssemblyInline, AssemblyCategoryInline]
+    inlines = [ExerciseAssemblyInline, AssemblyCategoryInline, AssemblyCourseInline]
 
     @admin.display(description="categories")
     def category_list(self, obj):
