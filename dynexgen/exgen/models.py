@@ -180,7 +180,7 @@ class Exercise(models.Model):
 
     def get_absolute_url(self):
         from django.urls import reverse
-        return reverse('exgen:answer_bottom_up', kwargs={'pk': self.pk})
+        return f"{reverse('exgen:type_views')}?exercise={self.pk}"
 
     def __str__(self):
         if self.title:
@@ -294,7 +294,7 @@ class Assembly(models.Model):
 
     def get_absolute_url(self):
         from django.urls import reverse
-        return reverse('exgen:index')
+        return f"{reverse('exgen:type_views')}?assembly={self.pk}"
 
 
 class ExerciseDependency(models.Model):
