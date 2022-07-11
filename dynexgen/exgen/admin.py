@@ -299,8 +299,29 @@ class AssemblyAdmin(admin.ModelAdmin):
         super().save_model(request, obj, form, change)
 
 
+class CourseAdmin(admin.ModelAdmin):
+    list_display = ('name', 'lecturer_name', 'semester',)
+    list_filter = ('category',)
+
+    exclude = ('lecturer',)
+
+    inlines = [CourseCategoryInline]
+
+    @admin.display(description="lecturer", ordering='lecturer__last_name')
+    def lecturer_name(self, obj):
+        if obj.lecturer.last_name == '':
+            return f"Username: {obj.lecturer}"
+        else:
+            return f"{obj.lecturer.last_name}, {obj.lecturer.first_name}"
+
+    def save_model(self, request, obj, form, change):
+        if not obj.lecturer:
+            obj.lecturer = request.user
+        super().save_model(request, obj, form, change)
+
+
 # Register your models here.
 admin.site.register(Exercise, ExerciseAdmin)
-admin.site.register(Course, inlines=[CourseCategoryInline])
+admin.site.register(Course, CourseAdmin)
 admin.site.register(Assembly, AssemblyAdmin)
 admin.site.register(Category)
