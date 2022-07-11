@@ -135,8 +135,6 @@ class ExerciseAdmin(nested_admin.NestedModelAdmin):
 
     actions = ('delete_exercise_with_children', make_published, 'make_published_with_dependent', 'make_unpublished_with_dependent', make_clone, 'make_assembly')
 
-    save_as = True  # overwrites "save and add another" with "save as new" -> allows cloning of exercises
-
     fieldsets = [
         (None,               {'fields': ['title', 'text', 'text_type']}),
         ("Comment",               {'fields': ['comment'],
