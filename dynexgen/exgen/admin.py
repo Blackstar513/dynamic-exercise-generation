@@ -269,7 +269,6 @@ class ExerciseAdmin(nested_admin.NestedModelAdmin):
         return change_page
 
 
-
 class AssemblyAdmin(admin.ModelAdmin):
     list_display = ('title', creator_name, 'category_list', 'date_modified', 'published')
     list_filter = (CreatorFullNameFilter, 'published', ('date_modified', admin.DateFieldListFilter), 'category')

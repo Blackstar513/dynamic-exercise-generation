@@ -27,7 +27,8 @@ class SelectExercisesForm(forms.Form):
         choices = []
         for exercise in exercise_choices:
             categories = [str(c) for c in exercise.category.all()]
-            choices.append((exercise.id, f"{exercise} | {exercise.creator} | {','.join(categories)}"))
+            creator_name = f"{exercise.creator.last_name}, {exercise.creator.first_name}" if exercise.creator.last_name else str(exercise.creator)
+            choices.append((exercise.id, f"{exercise} | {creator_name} | {','.join(categories)}"))
         self.fields['exercise'] = forms.MultipleChoiceField(label="Exercises", choices=tuple(choices),
                                                             widget=FilteredSelectMultiple("Exercises", is_stacked=False),
                                                             required=True)

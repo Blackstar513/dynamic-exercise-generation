@@ -6,6 +6,11 @@ from django.contrib.admin.widgets import FilteredSelectMultiple
 User = get_user_model()
 
 
+class FullUserNameModelMultipleChoiceField(forms.ModelMultipleChoiceField):
+    def label_from_instance(self, obj):
+        return f"{obj.last_name}, {obj.first_name}" if obj.last_name else str(obj)
+
+
 class ExerciseSearchForm(forms.Form):
     text = forms.CharField(label="Exercise text", widget=forms.Textarea(attrs={'cols': 136}), required=False)
     categories = forms.ModelMultipleChoiceField(label="Categories", queryset=Category.objects.all(),
@@ -14,9 +19,9 @@ class ExerciseSearchForm(forms.Form):
     category_connect = forms.ChoiceField(label="Category Constraint", choices=(('all', "All"),
                                                                                ('any', "Any")),
                                          widget=forms.RadioSelect, initial='all', required=True)
-    lecturers = forms.ModelMultipleChoiceField(label="Lecturers", queryset=User.objects.all(),
-                                               widget=FilteredSelectMultiple("Lecturers", is_stacked=False),
-                                               required=False)
+    lecturers = FullUserNameModelMultipleChoiceField(label="Lecturers", queryset=User.objects.all(),
+                                                     widget=FilteredSelectMultiple("Lecturers", is_stacked=False),
+                                                     required=False)
     only_root = forms.BooleanField(label="Search only for root exercises?", required=False)
 
 
@@ -28,7 +33,7 @@ class AssemblySearchForm(forms.Form):
     category_connect = forms.ChoiceField(label="Category Constraint", choices=(('all', "All"),
                                                                                ('any', "Any")),
                                          widget=forms.RadioSelect, initial='all', required=True)
-    lecturers = forms.ModelMultipleChoiceField(label="Lecturers", queryset=User.objects.all(),
-                                               widget=FilteredSelectMultiple("Lecturers", is_stacked=False),
-                                               required=False)
+    lecturers = FullUserNameModelMultipleChoiceField(label="Lecturers", queryset=User.objects.all(),
+                                                     widget=FilteredSelectMultiple("Lecturers", is_stacked=False),
+                                                     required=False)
 
