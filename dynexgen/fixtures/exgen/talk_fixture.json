@@ -1,0 +1,518 @@
+[
+{
+    "model": "exgen.exercise",
+    "pk": 1,
+    "fields": {
+        "title": "",
+        "text": "Zeichnen Sie einen Wahrscheinlichkeitsbaum.",
+        "text_type": "MARKDOWN",
+        "comment": "",
+        "published": true,
+        "date_created": "2022-07-11T11:43:38.979Z",
+        "date_modified": "2022-07-11T12:03:22.343Z",
+        "creator": 1
+    }
+},
+{
+    "model": "exgen.exercise",
+    "pk": 2,
+    "fields": {
+        "title": "",
+        "text": "Wie groß ist die Wahrscheinlichkeit dass eine Person männlich ist, wenn wir\r\nwissen, dass eine Rot-Grün Sehschwäche vorliegt.",
+        "text_type": "MARKDOWN",
+        "comment": "",
+        "published": true,
+        "date_created": "2022-07-11T11:44:34.878Z",
+        "date_modified": "2022-07-11T12:03:22.349Z",
+        "creator": 1
+    }
+},
+{
+    "model": "exgen.exercise",
+    "pk": 3,
+    "fields": {
+        "title": "Rot-Grün Sehschwäche",
+        "text": "9 % der Männer aber nur 0,8% der Frauen haben eine Rot-Grün Sehschwäche.\r\nDer Anteil der Männer an der Bevölkerung beträgt 47%.",
+        "text_type": "MARKDOWN",
+        "comment": "Aufgabe U7 aus Wahrscheinlichkeitsrechnung",
+        "published": true,
+        "date_created": "2022-07-11T11:45:03.115Z",
+        "date_modified": "2022-07-11T12:03:22.336Z",
+        "creator": 1
+    }
+},
+{
+    "model": "exgen.exercise",
+    "pk": 4,
+    "fields": {
+        "title": "Unfertige Aufgabe",
+        "text": "Diese aufgabe ist noch nicht fertig also wird sie nicht veröffentlicht",
+        "text_type": "MARKDOWN",
+        "comment": "ICH ARBEITE DRAN !!!",
+        "published": false,
+        "date_created": "2022-07-11T11:46:26.187Z",
+        "date_modified": "2022-07-11T11:46:26.187Z",
+        "creator": 1
+    }
+},
+{
+    "model": "exgen.exercise",
+    "pk": 5,
+    "fields": {
+        "title": "Unfertige Aufgabe",
+        "text": "Diese aufgabe ist noch nicht fertig also wird sie nicht veröffentlicht",
+        "text_type": "MARKDOWN",
+        "comment": "ICH ARBEITE DRAN !!!",
+        "published": false,
+        "date_created": "2022-07-11T11:55:04.075Z",
+        "date_modified": "2022-07-11T11:55:04.099Z",
+        "creator": 2
+    }
+},
+{
+    "model": "exgen.exercise",
+    "pk": 6,
+    "fields": {
+        "title": "Walters Rettich",
+        "text": "Walter Sattler hat die Mörhen und den ???",
+        "text_type": "MARKDOWN",
+        "comment": "",
+        "published": true,
+        "date_created": "2022-07-11T12:01:15.115Z",
+        "date_modified": "2022-07-11T12:03:22.307Z",
+        "creator": 2
+    }
+},
+{
+    "model": "exgen.exercise",
+    "pk": 7,
+    "fields": {
+        "title": "",
+        "text": "Wie viel Rettich hat Walter Sattler?",
+        "text_type": "MARKDOWN",
+        "comment": "",
+        "published": true,
+        "date_created": "2022-07-11T12:02:45.876Z",
+        "date_modified": "2022-07-11T12:03:22.323Z",
+        "creator": 2
+    }
+},
+{
+    "model": "exgen.exercise",
+    "pk": 8,
+    "fields": {
+        "title": "",
+        "text": "work in progress",
+        "text_type": "MARKDOWN",
+        "comment": "",
+        "published": false,
+        "date_created": "2022-07-11T12:46:29.852Z",
+        "date_modified": "2022-07-11T12:46:29.852Z",
+        "creator": 1
+    }
+},
+{
+    "model": "exgen.exercise",
+    "pk": 9,
+    "fields": {
+        "title": "Beispiel mit unfertier Sub",
+        "text": "DIES IST EIN BEISPIEL; DESSEN Subaufgabe nicht fertig ist",
+        "text_type": "MARKDOWN",
+        "comment": "",
+        "published": true,
+        "date_created": "2022-07-11T12:46:41.171Z",
+        "date_modified": "2022-07-11T12:46:41.171Z",
+        "creator": 1
+    }
+},
+{
+    "model": "exgen.exercise",
+    "pk": 10,
+    "fields": {
+        "title": "FIller",
+        "text": "Diese Aufgabe dient nur zum Füllen der unfertigen Aufgaben",
+        "text_type": "MARKDOWN",
+        "comment": "",
+        "published": false,
+        "date_created": "2022-07-11T12:47:57.113Z",
+        "date_modified": "2022-07-11T12:47:57.113Z",
+        "creator": 1
+    }
+},
+{
+    "model": "exgen.exercise",
+    "pk": 11,
+    "fields": {
+        "title": "XKCD",
+        "text": "Lachen sie über dieses Comic!",
+        "text_type": "MARKDOWN",
+        "comment": "",
+        "published": true,
+        "date_created": "2022-07-11T13:16:37.185Z",
+        "date_modified": "2022-07-11T13:16:44.655Z",
+        "creator": 2
+    }
+},
+{
+    "model": "exgen.answer",
+    "pk": 1,
+    "fields": {
+        "text": "Ohne Reihenfolge, ohne zurücklegen\r\n\r\n$\\frac{n!}{(n-k)!*k!)}= {N\\choose k}$\r\n\r\n$\\frac{133!}{(133-5)!*5!)}= {129*130*131*132*133\\choose 5!}$\r\n\r\n$=321.402.081$",
+        "text_type": "LATEX",
+        "date_created": "2022-07-11T11:43:38.981Z",
+        "date_modified": "2022-07-11T11:43:38.981Z",
+        "exercise": 1
+    }
+},
+{
+    "model": "exgen.answer",
+    "pk": 2,
+    "fields": {
+        "text": "\\begin{table}[]\r\n\\begin{tabular}{lr}\r\nP(M|S)=(P(S|M)*P(M))/P(S) &  \\\\\r\nP(M|S)=(0,09*0,47)/P(S) & P(S)=P(W)*P(S|W)+P(M)*P(S|M) \\\\\r\n & P(S)=0,53*0,008+0,47*0,09=0,047 \\\\\r\nP(M|S)=(0,09*0,47)/0,047 &  \\\\\r\nP(M|S)=0,909 & \r\n\\end{tabular}\r\n\\end{table}",
+        "text_type": "LATEX",
+        "date_created": "2022-07-11T11:44:34.879Z",
+        "date_modified": "2022-07-11T11:44:34.879Z",
+        "exercise": 2
+    }
+},
+{
+    "model": "exgen.answer",
+    "pk": 3,
+    "fields": {
+        "text": "Rettich!!!",
+        "text_type": "MARKDOWN",
+        "date_created": "2022-07-11T12:01:15.116Z",
+        "date_modified": "2022-07-11T12:01:15.116Z",
+        "exercise": 6
+    }
+},
+{
+    "model": "exgen.answer",
+    "pk": 4,
+    "fields": {
+        "text": "Sämtlichen",
+        "text_type": "MARKDOWN",
+        "date_created": "2022-07-11T12:02:45.877Z",
+        "date_modified": "2022-07-11T12:02:45.877Z",
+        "exercise": 7
+    }
+},
+{
+    "model": "exgen.answer",
+    "pk": 5,
+    "fields": {
+        "text": "Allen",
+        "text_type": "MARKDOWN",
+        "date_created": "2022-07-11T12:02:45.878Z",
+        "date_modified": "2022-07-11T12:02:45.878Z",
+        "exercise": 7
+    }
+},
+{
+    "model": "exgen.answer",
+    "pk": 6,
+    "fields": {
+        "text": "FALSCH!",
+        "text_type": "MARKDOWN",
+        "date_created": "2022-07-11T12:47:57.114Z",
+        "date_modified": "2022-07-11T12:47:57.114Z",
+        "exercise": 10
+    }
+},
+{
+    "model": "exgen.answer",
+    "pk": 7,
+    "fields": {
+        "text": "HAHAHAHA",
+        "text_type": "MARKDOWN",
+        "date_created": "2022-07-11T13:16:37.187Z",
+        "date_modified": "2022-07-11T13:16:37.187Z",
+        "exercise": 11
+    }
+},
+{
+    "model": "exgen.answer",
+    "pk": 8,
+    "fields": {
+        "text": "HIHIHIHI",
+        "text_type": "MARKDOWN",
+        "date_created": "2022-07-11T13:16:37.196Z",
+        "date_modified": "2022-07-11T13:16:37.196Z",
+        "exercise": 11
+    }
+},
+{
+    "model": "exgen.exercisepicture",
+    "pk": 1,
+    "fields": {
+        "image": "exercise_images/xkcd_python.png",
+        "text": "source: https://xkcd.com/353/",
+        "exercise": 11
+    }
+},
+{
+    "model": "exgen.answerpicture",
+    "pk": 1,
+    "fields": {
+        "image": "answer_images/rettich.jpeg",
+        "text": "Rettich",
+        "answer": 3
+    }
+},
+{
+    "model": "exgen.answerpicture",
+    "pk": 2,
+    "fields": {
+        "image": "answer_images/cat_grossed_out.jpg",
+        "text": "Iiih Rettich!",
+        "answer": 3
+    }
+},
+{
+    "model": "exgen.category",
+    "pk": 1,
+    "fields": {
+        "name": "Wahrscheinlichkeitsrechnung"
+    }
+},
+{
+    "model": "exgen.category",
+    "pk": 2,
+    "fields": {
+        "name": "Zahlenjonglieren"
+    }
+},
+{
+    "model": "exgen.category",
+    "pk": 3,
+    "fields": {
+        "name": "Rettichrechnungen"
+    }
+},
+{
+    "model": "exgen.category",
+    "pk": 4,
+    "fields": {
+        "name": "nicht echt"
+    }
+},
+{
+    "model": "exgen.assembly",
+    "pk": 1,
+    "fields": {
+        "title": "Assembly 1",
+        "published": true,
+        "date_created": "2022-07-11T13:04:45.076Z",
+        "date_modified": "2022-07-11T13:05:17.221Z",
+        "creator": 1
+    }
+},
+{
+    "model": "exgen.assembly",
+    "pk": 2,
+    "fields": {
+        "title": "Assembly 2",
+        "published": false,
+        "date_created": "2022-07-11T13:05:47.219Z",
+        "date_modified": "2022-07-11T13:17:42.015Z",
+        "creator": 2
+    }
+},
+{
+    "model": "exgen.assembly",
+    "pk": 3,
+    "fields": {
+        "title": "Walters Aufgabenblatt",
+        "published": true,
+        "date_created": "2022-07-11T13:17:01.938Z",
+        "date_modified": "2022-07-11T13:17:20.828Z",
+        "creator": 2
+    }
+},
+{
+    "model": "exgen.exercisedependency",
+    "pk": 1,
+    "fields": {
+        "parent": 3,
+        "child": 1,
+        "hierarchy": "higher"
+    }
+},
+{
+    "model": "exgen.exercisedependency",
+    "pk": 2,
+    "fields": {
+        "parent": 3,
+        "child": 2,
+        "hierarchy": "higher"
+    }
+},
+{
+    "model": "exgen.exercisedependency",
+    "pk": 3,
+    "fields": {
+        "parent": 6,
+        "child": 7,
+        "hierarchy": "even"
+    }
+},
+{
+    "model": "exgen.exercisedependency",
+    "pk": 4,
+    "fields": {
+        "parent": 9,
+        "child": 8,
+        "hierarchy": "higher"
+    }
+},
+{
+    "model": "exgen.exercisecategory",
+    "pk": 1,
+    "fields": {
+        "category": 1,
+        "exercise": 1
+    }
+},
+{
+    "model": "exgen.exercisecategory",
+    "pk": 2,
+    "fields": {
+        "category": 1,
+        "exercise": 2
+    }
+},
+{
+    "model": "exgen.exercisecategory",
+    "pk": 3,
+    "fields": {
+        "category": 1,
+        "exercise": 3
+    }
+},
+{
+    "model": "exgen.exercisecategory",
+    "pk": 4,
+    "fields": {
+        "category": 2,
+        "exercise": 6
+    }
+},
+{
+    "model": "exgen.exercisecategory",
+    "pk": 5,
+    "fields": {
+        "category": 3,
+        "exercise": 6
+    }
+},
+{
+    "model": "exgen.exercisecategory",
+    "pk": 6,
+    "fields": {
+        "category": 3,
+        "exercise": 7
+    }
+},
+{
+    "model": "exgen.exercisecategory",
+    "pk": 7,
+    "fields": {
+        "category": 2,
+        "exercise": 9
+    }
+},
+{
+    "model": "exgen.exercisecategory",
+    "pk": 8,
+    "fields": {
+        "category": 4,
+        "exercise": 10
+    }
+},
+{
+    "model": "exgen.exercisecategory",
+    "pk": 9,
+    "fields": {
+        "category": 3,
+        "exercise": 11
+    }
+},
+{
+    "model": "exgen.exerciseassembly",
+    "pk": 1,
+    "fields": {
+        "exercise": 9,
+        "assembly": 1,
+        "rank": 1
+    }
+},
+{
+    "model": "exgen.exerciseassembly",
+    "pk": 2,
+    "fields": {
+        "exercise": 3,
+        "assembly": 1,
+        "rank": 2
+    }
+},
+{
+    "model": "exgen.exerciseassembly",
+    "pk": 3,
+    "fields": {
+        "exercise": 9,
+        "assembly": 2,
+        "rank": 1
+    }
+},
+{
+    "model": "exgen.exerciseassembly",
+    "pk": 4,
+    "fields": {
+        "exercise": 3,
+        "assembly": 2,
+        "rank": 2
+    }
+},
+{
+    "model": "exgen.exerciseassembly",
+    "pk": 5,
+    "fields": {
+        "exercise": 11,
+        "assembly": 3,
+        "rank": 1
+    }
+},
+{
+    "model": "exgen.exerciseassembly",
+    "pk": 6,
+    "fields": {
+        "exercise": 6,
+        "assembly": 3,
+        "rank": 2
+    }
+},
+{
+    "model": "exgen.assemblycategory",
+    "pk": 1,
+    "fields": {
+        "assembly": 1,
+        "category": 1
+    }
+},
+{
+    "model": "exgen.assemblycategory",
+    "pk": 2,
+    "fields": {
+        "assembly": 2,
+        "category": 1
+    }
+},
+{
+    "model": "exgen.assemblycategory",
+    "pk": 3,
+    "fields": {
+        "assembly": 3,
+        "category": 3
+    }
+}
+]
