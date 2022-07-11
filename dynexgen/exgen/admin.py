@@ -1,13 +1,14 @@
 import nested_admin
 from django.utils.html import format_html
 from django.contrib import admin, messages
+from django.contrib.auth import get_user_model
 from .models import Exercise, Answer, Category, Course, ExercisePicture, AnswerPicture, ExerciseDependency, \
     CourseExercise, CourseCategory, ExerciseCategory, Assembly, ExerciseAssembly, AssemblyCategory
 from django.utils.translation import gettext_lazy as _
 from django.http import HttpResponseRedirect
 from datetime import datetime
 
-
+User = get_user_model()
 admin.site.site_url = '/exgen/exercise_search'
 
 
@@ -26,6 +27,15 @@ def make_published(modeladmin, request, queryset):
 @admin.action(description='Mark selected objects as unpublished')
 def make_unpublished(modeladmin, request, queryset):
     queryset.update(published=False)
+
+
+# Custom admin displays
+@admin.display(description="creator", ordering='creator__last_name')
+def creator_name(obj):
+    if obj.creator.last_name == '':
+        return f"Username: {obj.creator}"
+    else:
+        return f"{obj.creator.last_name}, {obj.creator.first_name}"
 
 
 # admin Filters
@@ -48,6 +58,27 @@ class IsRootFilter(admin.EmptyFieldListFilter):
                 ),
                 "display": title,
             }
+
+
+class CreatorFullNameFilter(admin.SimpleListFilter):
+    title = _("By Creator")
+    parameter_name = "creator_id"
+
+    def lookups(self, request, model_admin):
+        users = []
+        for u in User.objects.all():
+            if u.last_name:
+                users.append((u.pk, f'{u.last_name}, {u.first_name}'))
+            else:
+                users.append((u.pk, f"Username: {u}"))
+
+        return users
+
+    def queryset(self, request, queryset):
+        value = self.value()
+        if value is not None:
+            return queryset.filter(creator_id=value)
+        return queryset
 
 
 # Inline elements
@@ -126,9 +157,9 @@ class AssemblyCategoryInline(admin.TabularInline):
 
 # Custom admin forms
 class ExerciseAdmin(nested_admin.NestedModelAdmin):
-    list_display = ('exercise_title', 'creator', 'category_list', 'text_type', 'short_comment', 'date_modified', 'published')
+    list_display = ('exercise_title', creator_name, 'category_list', 'text_type', 'short_comment', 'date_modified', 'published')
     #list_display_links = list_display
-    list_filter = ('creator', 'published', 'text_type', ('date_modified', admin.DateFieldListFilter), ('children', IsRootFilter), 'category')
+    list_filter = (CreatorFullNameFilter, 'published', 'text_type', ('date_modified', admin.DateFieldListFilter), ('children', IsRootFilter), 'category')
 
     search_fields = ('title', 'text', 'creator__last_name__startswith', 'text_type__startswith')
     search_help_text = "Searches anywhere in titles and text;\nSearches if creator or texttype start with the query"
@@ -240,8 +271,8 @@ class ExerciseAdmin(nested_admin.NestedModelAdmin):
 
 
 class AssemblyAdmin(admin.ModelAdmin):
-    list_display = ('title', 'creator', 'category_list', 'date_modified', 'published')
-    list_filter = ('creator', 'published', ('date_modified', admin.DateFieldListFilter), 'category')
+    list_display = ('title', creator_name, 'category_list', 'date_modified', 'published')
+    list_filter = (CreatorFullNameFilter, 'published', ('date_modified', admin.DateFieldListFilter), 'category')
 
     actions = (make_published, make_unpublished, make_clone)
     save_as = True  # overwrites "save and add another" with "save as new" -> allows cloning of exercises
