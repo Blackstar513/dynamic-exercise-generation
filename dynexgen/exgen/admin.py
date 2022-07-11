@@ -143,6 +143,8 @@ class ExerciseAdmin(nested_admin.NestedModelAdmin):
     ]
     inlines = [ExerciseInline, AnswerInline, ExercisePictureInline, ExerciseCategoryInline, CourseInline]
 
+    save_as = True
+
     @admin.display(description="comment", ordering='comment')
     def short_comment(self, obj):
         s_comment = obj.comment
@@ -210,6 +212,27 @@ class ExerciseAdmin(nested_admin.NestedModelAdmin):
         if not obj.creator:
             obj.creator = request.user
         super().save_model(request, obj, form, change)
+
+    def change_view(self, request, object_id, form_url="", extra_context=None):
+        change_page = super().change_view(request, object_id, form_url, extra_context)
+        # a bit hacky deepcopy on save as new solution
+        # first the flat copy is made (happens in the step above)
+        # then this flat copy is deepcopied
+        # then the flat copy gets deleted and the redirect updated
+        if '_saveasnew' in request.POST:
+            splitted_url = change_page.url.split('/')
+            # get the flat copy
+            new_obj = Exercise.objects.get(pk=splitted_url[4])
+            # duplicate the flat copy to ensure deepcopy
+            dup_obj = new_obj.duplicate(request.user)
+            # delete the flat copy
+            new_obj.delete()
+            # update the redirect url
+            splitted_url[4] = str(dup_obj.id)
+            change_page = HttpResponseRedirect('/'.join(splitted_url))
+
+        return change_page
+
 
 
 class AssemblyAdmin(admin.ModelAdmin):
