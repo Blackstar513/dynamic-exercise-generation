@@ -1,5 +1,14 @@
 [
 {
+    "model": "exgen.course",
+    "pk": 1,
+    "fields": {
+        "name": "Watlers Rettich Kurs",
+        "semester": "WiSe2022",
+        "lecturer": 2
+    }
+},
+{
     "model": "exgen.exercise",
     "pk": 1,
     "fields": {
@@ -325,7 +334,7 @@
         "title": "Walters Aufgabenblatt",
         "published": true,
         "date_created": "2022-07-11T13:17:01.938Z",
-        "date_modified": "2022-07-11T13:17:20.828Z",
+        "date_modified": "2022-07-11T13:55:10.312Z",
         "creator": 2
     }
 },
@@ -438,6 +447,14 @@
     }
 },
 {
+    "model": "exgen.coursecategory",
+    "pk": 1,
+    "fields": {
+        "course": 1,
+        "category": 3
+    }
+},
+{
     "model": "exgen.exerciseassembly",
     "pk": 1,
     "fields": {
@@ -513,6 +530,14 @@
     "fields": {
         "assembly": 3,
         "category": 3
+    }
+},
+{
+    "model": "exgen.assemblycourses",
+    "pk": 1,
+    "fields": {
+        "course": 1,
+        "assembly": 3
     }
 }
 ]
