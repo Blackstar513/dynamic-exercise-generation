@@ -10,7 +10,7 @@ class SelectFileTypeForm(forms.Form):
                                                             ('latex', "Latex"),
                                                             ('beamer', "Beamer"),
                                                             ('html', "HTML"),
-                                                            ('md', "MarkDown")),
+                                                            ('markdown', "MarkDown")),
                                 #widget=forms.RadioSelect(),
                                 initial='pdf',
                                 required=True)
