@@ -119,7 +119,7 @@ def document_from_latex(latex_infile, doctype):
     if doctype == "pdf":
         target_doc = pdflatex_convert(latex_infile)
     else:
-        pandoc_document = pandoc.read(tex_document,format="latex")
-        target_doc = pandoc.write(pandoc_data,format=doctype)
+        pandoc_document = pandoc.read(latex_infile,format="latex")
+        target_doc = pandoc.write(pandoc_document,format=doctype)
     return target_doc
 
