@@ -81,6 +81,7 @@ def internal_format_to_pandoc_format(f: str) -> str:
     return f
 
 def exercise_fragment(depth, exercise, number, options=None):
+    print(f"ex frag {options=}")
     if options is None:
         options = _options_default
     doc_format = internal_format_to_pandoc_format(exercise.text_type)
@@ -102,6 +103,14 @@ def exercise_fragment(depth, exercise, number, options=None):
         for image in images:
             exercise_latex += f"\\\\\includegraphics[width=\\textwidth]{{{image.image.path}}}\n"
 
+    if options.get("include_answers",False):
+        print("USE ANSWERS")
+        for answer in exercise.answers.all():
+            print(f"{answer=}")
+            exercise_latex += answers_fragment(depth,answer,number,options)
+
+
+
     content = section_header + "\n" + exercise_latex
 
     #print(content)
@@ -114,7 +123,8 @@ def answers_fragment(depth, fragment, number, options = None):
     fragment_pandoc = pandoc.read(fragment.text, format=doc_format)
     fragment_latex = pandoc.write(fragment_pandoc,format="latex")
 
-    section_header = r"\section*{Answer}"
+    depth = "sub"*min((depth),2)
+    section_header = r"\DEPTHsection*{Answer}".replace("DEPTH",str(depth))
 
     for image in fragment.pictures.iterator():
         fragment_latex += f"\\\\\includegraphics{{{image.image.path}}}\n"

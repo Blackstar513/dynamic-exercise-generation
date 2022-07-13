@@ -29,8 +29,8 @@ class FragmentCollection:
             print(f"{exercise=}")
             if hasattr(exercise,"get_all_parent_dependencies_correctly_nested"):
                 self.tree += exercise.get_all_parent_dependencies_correctly_nested()
-                if self.configuration["include_answers"]:
-                    self.tree += list(exercise.answers.all())
+                #if self.configuration["include_answers"]:
+                #    self.tree += list(exercise.answers.all())
             else:
                 self.tree += list(exercise)
 
