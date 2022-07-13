@@ -15,15 +15,24 @@ class FragmentCollection:
         self.title = ""
         self.tree = []
         self.configuration = {
-                "nest_down":False,
+                "full_exercise":False,
                 "include_answers":False,
                 }
         for key, default_value in self.configuration.items():
             self.configuration[key] = bool(configuration.get(key,default_value))
     def add(self, exercise):
-        self.tree += exercise.get_all_parent_dependencies_correctly_nested()
-        if self.configuration["include_answers"]:
-            self.tree += list(exercise.answers.all())
+        if self.configuration["full_exercise"]:
+            exercises = exercise.get_all_child_dependencies()
+        else:
+            exercises = [exercise]
+        for exercise in exercises: 
+            print(f"{exercise=}")
+            if hasattr(exercise,"get_all_parent_dependencies_correctly_nested"):
+                self.tree += exercise.get_all_parent_dependencies_correctly_nested()
+            else:
+                self.tree += list(exercise)
+            if self.configuration["include_answers"]:
+                self.tree += list(exercise.answers.all())
 
 
 def gather_assemblies(assembly_ids, configuration):

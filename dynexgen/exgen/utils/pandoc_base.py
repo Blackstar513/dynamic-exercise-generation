@@ -1,6 +1,7 @@
 import subprocess, sys, os, tempfile
 from traceback import print_exception
 from contextlib import contextmanager
+from django.core.exceptions import BadRequest
 
 import pandoc
 #from .pandoc_exercise_composer import parse_exercise_tree
@@ -76,8 +77,12 @@ def pdflatex_convert(infile_data):
                 print(f.read())
         except Exception as e:
             pass # I don't care. It's only relevant if it failed
-        with open("tmp.pdf","rb") as f:
-            return f.read()
+        try:
+            with open("tmp.pdf","rb") as f:
+                return f.read()
+        except FileNotFoundError as e:
+            pass # Fallthrough to bad request
+        raise BadRequest("<br>".join(command_output))
 
 
 # pandoc --reference-doc=REFERENCE_PATH -o OUTFILE INFILE
