@@ -6,6 +6,7 @@ _pdf_base = r"""
 \documentclass[a4paper]{scrartcl}
 \usepackage{graphicx}
 \usepackage{longtable}
+\usepackage{colors}
 \title{\textbf{TITLE}}
 \subtitle{SUBTITLE}
 \begin{document}
@@ -17,6 +18,7 @@ _beamer_base = r"""
 \documentclass{beamer}
 \usepackage{graphicx}
 \usepackage{longtable}
+\usepackage{colors}
 %\usetheme[fb2]{FrankfurtUniversity}
 \title{TITLE}
 \begin{document}
