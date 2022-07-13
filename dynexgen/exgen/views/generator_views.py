@@ -37,7 +37,7 @@ def converted_file_response_view(request):
         response_file = generate_file(configuration)
         response = HttpResponse(content=response_file)
         response['Content-Type'] = _content_types.get(configuration["doctype"],
-                                                      'text/plain')
+                                                      'text/plain;charset=utf-8')
         return response
 
     except MultiValueDictKeyError as e:
