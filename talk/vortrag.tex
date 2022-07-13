@@ -20,6 +20,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
 \usepackage{booktabs}
+\usepackage{setspace}
 
 
 \usetheme[fb2]{FrankfurtUniversity}
@@ -95,5 +96,54 @@
 \vspace{-6mm}
 \end{frame}
 
+\begin{frame}{Pandoc}
+    \begin{itemize}
+        \item Dokumentenkonverter
+        \item Interne Baumrepräsentation von Dokumenten
+        \item Unterstützt viele Formate
+        \begin{itemize}
+            \item $\leftrightarrow$ \LaTeX
+            \item $\leftrightarrow$ Markdown
+            \item $\leftrightarrow$ HTML
+            \item $\leftrightarrow$ Microsoft Word docx
+            \item ($\rightarrow$ Microsoft Power Point)
+            \item $\rightarrow$ PDF
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Pandoc Nachteile}
+    \begin{itemize}
+        \item keine Formeln in Powerpoint
+        \item LaTeX Beamer macht *.tex Datein statt Folien
+        \item eigene Template-Sprache
+        \item eigene Datenstrukturen\\
+            {\tiny \texttt{Pandoc(Meta(\{\}), [Para([Str('sei'), Space(), Str('T'), Space(), Str('ein')\dots } }
+        \item weniger Kontrolle über genaues Aussehen
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Backend Endpoint}
+    \texttt{/generator?}\dots\\
+    \quad\quad\quad\texttt{doctype=(pdf|docx|html|...)}\\
+    \quad\quad\quad\texttt{\&exercise=23\&exercise=42}\\
+    \quad\quad\quad\texttt{\&assembly=42}\\
+    \quad\quad\quad\texttt{\&include\_answers=1\&title=0}\\
+    \begin{itemize}
+        \item QueryDict wird an alle Funktionen weitergereicht\\
+            \quad $\Rightarrow$ einfache Konfiguration / Feature-Toggles
+        \item 400 BadRequest überall möglich (via Exceptions)
+        \item Content-Type für PDF, docx, odt, Text\\
+            \quad $\Rightarrow$ PDF \& Text im Browser / Dokumente extern
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Backend}
+\begin{center}
+\includegraphics[height=7cm]{backend.pdf}
+\end{center}
+\vspace{-6mm}
+\end{frame}
 
 \end{document}
